@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 
 const NavBarContainer = styled.div`
+  background-color: white;
   min-height: 2.5rem;
   height: fit-content;
 
@@ -12,7 +13,7 @@ const NavBarContainer = styled.div`
   overflow: hidden;
   z-index: 999;
 
-  border: 0.5rem solid #1c6ea4;
+  border: 2px solid #767676;
   border-radius: 0.5rem;
   scroll-behavior: smooth;
 `;
@@ -24,7 +25,6 @@ const NavMenu = styled.button`
   width: 2.5rem;
   height: 2.5rem;
   border: none;
-  margin-bottom: 0.5rem;
   cursor: pointer;
 `;
 
@@ -33,11 +33,7 @@ const NavItem = styled.a`
 
   width: 2.5rem;
   height: 2.5rem;
-  margin-bottom: 0.5rem;
   z-index: 998;
-  :last-child {
-    margin-bottom: 0rem;
-  }
 `;
 
 const NavItemContainer = styled.div`

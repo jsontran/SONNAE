@@ -1,28 +1,31 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const NavBarContainer = styled.div`
-  background-color: blue;
+  min-height: 2.5rem;
+  height: fit-content;
 
   position: fixed;
   display: inline-flex;
   flex-direction: column;
   margin: 0.5rem 0 0 0.5rem;
-  padding: 0.5rem 0.5rem 0 0.5rem;
+  overflow: hidden;
   z-index: 999;
 
+  border: 0.5rem solid #1c6ea4;
   border-radius: 0.5rem;
+  scroll-behavior: smooth;
 `;
 
 const NavMenu = styled.button`
   background-color: #ff7e7e;
-
-  margin-bottom: 0.5rem;
+  z-index: 1000;
 
   width: 2.5rem;
   height: 2.5rem;
   border: none;
-  padding: 0;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
 `;
 
 const NavItem = styled.a`
@@ -31,14 +34,24 @@ const NavItem = styled.a`
   width: 2.5rem;
   height: 2.5rem;
   margin-bottom: 0.5rem;
+  z-index: 998;
+  :last-child {
+    margin-bottom: 0rem;
+  }
 `;
 
 const NavItemContainer = styled.div`
-  display: none;
+  overflow: hidden;
+  display: inline-flex;
+  flex-direction: column;
+  transition: all 0.5s ease;
+  z-index: 998;
 
-  &.active {
-    display: inline-flex;
-    flex-direction: column;
+  &.true {
+    margin-top: 0;
+  }
+  &.false {
+    margin-top: -15rem;
   }
 `;
 
@@ -47,6 +60,8 @@ export type NavBarProps = {
   setNavState: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+const PAGES: string[] = ["#Home", "#About", "#Career", "#Projects", "#Contact"];
+
 const NavBar = ({ navState, setNavState }: NavBarProps) => {
   return (
     <NavBarContainer>
@@ -54,12 +69,10 @@ const NavBar = ({ navState, setNavState }: NavBarProps) => {
         className={"Menu " + (navState && "active")}
         onClick={() => setNavState(!navState)}
       />
-      <NavItemContainer className={"ItemContainer " + (navState && "active")}>
-        <NavItem href="#Home" />
-        <NavItem href="#About" />
-        <NavItem href="#Career" />
-        <NavItem href="#Projects" />
-        <NavItem href="#Contact" />
+      <NavItemContainer className={"ItemContainer " + navState}>
+        {PAGES.map((page) => (
+          <NavItem href={page} />
+        ))}
       </NavItemContainer>
     </NavBarContainer>
   );

@@ -4,6 +4,10 @@ import App from "./App";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     margin: 0;
   }

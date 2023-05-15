@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const HomeContainer = styled.div`
+  position: relative;
   width: 100vw;
-  height: fit-content;
+  height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -11,30 +12,48 @@ const HomeContainer = styled.div`
   background-color: #fafafa;
 `;
 
-const SectionWrapper = styled.div``;
-
-const SON = styled.img`
-  max-width: 100vw;
-  max-height: 90vh;
-  width: fit-content;
-  float: right;
+const SONNAE = styled.img`
+  max-width: 110vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-54.5%, -50%);
+  z-index: 0;
 `;
-const NAE = styled.img`
-  max-width: 100vw;
-  max-height: 90vh;
-  width: fit-content;
-  margin-top: 10vh;
+
+const Title = styled.p`
+  font-family: NeutralFace;
+  font-weight: bold;
+  font-size: 2.5vw;
+  text-align: right;
+  color: #0a0a0a;
+  margin: 0;
+`;
+
+const SubText = styled.p`
+  font-family: AGaramondPro;
+  font-size: 1.25vw;
+  text-align: right;
+  color: #0a0a0a;
+  margin: 0;
+`;
+
+const TitleContainer = styled.div`
+  z-index: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(118%, 425%);
 `;
 
 const Home = () => {
   return (
     <HomeContainer id="Home">
-      <div>
-        <SON src="./assets/SON.png" />
-      </div>
-      <SectionWrapper>
-        <NAE src="./assets/NAE.png" />
-      </SectionWrapper>
+      <SONNAE src="./assets/SONNAE.png" />
+      <TitleContainer>
+        <Title>BY: Jason Tran</Title>
+        <SubText>to be above the heavens</SubText>
+      </TitleContainer>
     </HomeContainer>
   );
 };

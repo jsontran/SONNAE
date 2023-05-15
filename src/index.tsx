@@ -4,12 +4,36 @@ import App from "./App";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+
+  @font-face {
+    font-family: NeutralFace;
+    src: url("./fonts/NeutralFace.otf") format("opentype");
+  }
+  @font-face {
+    font-family: NeutralFace;
+    src: url("./fonts/NeutralFace-Bold.otf") format("opentype");
+    font-weight: bold;
+  }@font-face {
+    font-family: AGaramondPro;
+    src: url("./fonts/AGaramondPro.otf") format("opentype");
+  }
+  @font-face {
+    font-family: AGaramondPro;
+    src: url("./fonts/AGaramondPro-Bold.otf") format("opentype");
+    font-weight: bold;
+  }
+
+
+
   html {
     scroll-behavior: smooth;
+    width: 100vw;
+    
   }
   
   body {
     margin: 0;
+  background-color: #fafafa;
   }
 `;
 

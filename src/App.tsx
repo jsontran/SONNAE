@@ -7,12 +7,11 @@ import Contact from "./pages/Contact";
 import NavBar from "./components/NavBar";
 
 const App = () => {
-
-  const [navState, setNavState] = useState(false)
+  const [navState, setNavState] = useState(false);
 
   return (
     <>
-      <NavBar navState={navState} setNavState={setNavState}/>
+      <NavBar navState={navState} setNavState={setNavState} />
       <Home />
       <About />
       <Career />

@@ -9,7 +9,7 @@ const NavBarContainer = styled.div`
   position: fixed;
   display: inline-flex;
   flex-direction: column;
-  margin: 0.5rem 0 0 0.5rem;
+  margin: 1rem 0 0 1rem;
   overflow: hidden;
   z-index: 999;
 
@@ -19,7 +19,7 @@ const NavBarContainer = styled.div`
 `;
 
 const NavMenu = styled.button`
-  background-color: #ff7e7e;
+  background-color: #d5d5d5;
   z-index: 1000;
 
   width: 2.5rem;
@@ -29,7 +29,7 @@ const NavMenu = styled.button`
 `;
 
 const NavItem = styled.a`
-  background-color: red;
+  background-color: #c0c0c0;
 
   width: 2.5rem;
   height: 2.5rem;

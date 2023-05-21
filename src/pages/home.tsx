@@ -10,6 +10,7 @@ const HomeContainer = styled.div`
   flex-direction: column;
 
   background-color: #fafafa;
+
 `;
 
 const SONNAE = styled.img`
@@ -18,7 +19,6 @@ const SONNAE = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-54.5%, -50%);
-  z-index: 0;
 `;
 
 const Title = styled.p`
@@ -39,11 +39,10 @@ const SubText = styled.p`
 `;
 
 const TitleContainer = styled.div`
-  z-index: 0;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(118%, 425%);
+  transform: translate(118%, 500%);
 `;
 
 const Home = () => {

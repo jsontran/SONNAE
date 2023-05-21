@@ -13,7 +13,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: NeutralFace;
     src: url("./fonts/NeutralFace-Bold.otf") format("opentype");
     font-weight: bold;
-  }@font-face {
+  }
+  @font-face {
     font-family: AGaramondPro;
     src: url("./fonts/AGaramondPro.otf") format("opentype");
   }
@@ -22,7 +23,10 @@ const GlobalStyle = createGlobalStyle`
     src: url("./fonts/AGaramondPro-Bold.otf") format("opentype");
     font-weight: bold;
   }
-
+  @font-face {
+    font-family: SkModernist;
+    src: url("./fonts/SkModernist.otf") format("opentype");
+  }
 
 
   html {

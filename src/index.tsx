@@ -23,6 +23,12 @@ const GlobalStyle = createGlobalStyle`
     src: url("./fonts/AGaramondPro-Bold.otf") format("opentype");
     font-weight: bold;
   }
+
+
+  @font-face {
+    font-family: TuskerGrotesk;
+    src: url("./fonts/TuskerGrotesk.otf") format("opentype");
+  }
   @font-face {
     font-family: SkModernist;
     src: url("./fonts/SkModernist.otf") format("opentype");

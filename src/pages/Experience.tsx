@@ -16,7 +16,6 @@ const ExpSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* padding-right: 19%; */
 `;
 
 const Icon = styled.img`
@@ -39,7 +38,6 @@ const ExpCard = styled.div`
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: all 1s ease;
-  /* background-color: #f8f8f869; */
 `;
 
 const Timeline = styled.div`

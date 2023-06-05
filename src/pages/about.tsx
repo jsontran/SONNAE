@@ -38,7 +38,6 @@ const AboutText = styled.div`
     rgba(18, 18, 18, 0) 100%
   );
 
-
   box-shadow: 0px 0px 10px 0px #0000001e;
   border: 1px solid rgba(0, 0, 0, 0.2);
 

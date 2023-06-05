@@ -8,7 +8,7 @@ const ExpContainer = styled.div`
   display: flex;
   justify-content: center;
   background-color: #fafafa;
-  margin-bottom: 10rem;
+  padding: 5rem 0 10rem 0;
 `;
 
 const ExpSection = styled.div`

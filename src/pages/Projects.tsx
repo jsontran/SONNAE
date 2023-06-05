@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 
 const ProjectsContainer = styled.div`
   width: 100vw;
-  height: fit-content;
+  height: 110%;
   display: flex;
   justify-content: center;
   background-color: #fafafa;
@@ -14,23 +14,23 @@ const ProjTitle = styled.div``;
 const ProjDesc = styled.div``;
 const Title = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
 `;
 
 const TitleLetters = styled.span`
-  font-size: 15vw;
+  font-size: 12vw;
   font-family: NeutralFace;
   font-weight: bold;
-  letter-spacing: 1.5vw;
+  letter-spacing: 3vw;
   user-select: none;
 
   color: #fafafa;
-  text-shadow: -1px -1px 0 #1e1d1d, 1px -1px 0 #1e1d1d, -1px 1px 0 #1e1d1d,
-    1px 1px 0 #1e1d1d;
-  transition: all 1s ease;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
+  transition: all 0.25s ease-in;
   &:hover {
-    font-size: 14.5vw;
+    font-size: 11.5vw;
   }
 `;
 
@@ -38,26 +38,19 @@ type TitleLayerProps = {
   index: number;
 };
 
-const flickerAnimation = `
-0% {
-  opacity: 0;
-}
-100% {
-  opacity: 1;
-}
-`;
-
 const iterateLetters = (index: number) => {
   let styles = "";
   let j = index;
-  for (let i = 1; i <= 5; i++) {
-    if (j > 4) {
-      j -= 4;
+  for (let i = 1; i <= 6; i++) {
+    if (j > 5) {
+      j -= 5;
     }
     styles += `
-    ${TitleLetters}:nth-child(${j}) {
-        animation:  flicker 12s infinite;
-        animation-delay: ${i * 3 - 3}s;
+    ${TitleLetters}{
+        animation:  flicker 10s infinite;
+        animation-delay: ${index * 2}s;
+
+  opacity:${(6-index)*0.2}
       }
     `;
     j++;
@@ -69,19 +62,24 @@ const iterateLetters = (index: number) => {
 const TitleLayer = styled.div<TitleLayerProps>`
   ${(p) => iterateLetters(p.index)}
   text-align: center;
+  margin-left: 2vw;
 
   @keyframes flicker {
     0% {
-      color: #1e1d1d;
+      color: #fafafa;
     }
-    24% {
-      color: #1e1d1d;
+    2% {
+      color: black;
     }
-    25% {
+    18% {
+      color: black;
+    }
+    20% {
       color: #fafafa;
     }
   }
 `;
+
 
 const titleLetters = ["PR", "OJ", "EC", "TS"];
 const TitleLayers = ({ index }: TitleLayerProps) => {
@@ -117,6 +115,7 @@ const Projects = () => {
         <TitleLayers index={2} />
         <TitleLayers index={3} />
         <TitleLayers index={4} />
+        <TitleLayers index={5} />
       </Title>
       <ProjectCards title={""} desc={""} img={""} />
       <ProjectCards title={""} desc={""} img={""} />

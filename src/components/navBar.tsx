@@ -56,7 +56,7 @@ export type NavBarProps = {
   setNavState: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const PAGES: string[] = ["#Home", "#About", "#Career", "#Projects", "#Contact"];
+const PAGES: string[] = ["#Home", "#About", "#Experience", "#Projects", "#Contact"];
 
 const NavBar = ({ navState, setNavState }: NavBarProps) => {
   return (

@@ -35,14 +35,18 @@ const GlobalStyle = createGlobalStyle`
   }
 
 
-  html {
+  html ,body {
     scroll-behavior: smooth;
-    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
     
-  }
   
-  body {
+  
+  
+  overflow-x: hidden; 
+    max-width: 100%;
     margin: 0;
+    overflow-x: hidden;
   background-color: #fafafa;
   }
 `;

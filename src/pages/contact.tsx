@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const ContactContainer = styled.div`
-background-color: #68ffac;
+background-color: #fafafa;
   width: 100vw;
   height: 100vh;
 `;
 
 const Contact = () => {
-  return <ContactContainer id="Contact">Contact</ContactContainer>;
+  return <ContactContainer id="Contact"></ContactContainer>;
 };
 
 export default Contact;

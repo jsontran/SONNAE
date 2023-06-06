@@ -6,10 +6,11 @@ const AboutContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fafafa;
+  margin-top: 3rem;
 `;
 
 const AboutCard = styled.div`
-  width: 70vw;
+  width: min(70vw, 75rem);
   display: flex;
   justify-content: space-between;
 `;

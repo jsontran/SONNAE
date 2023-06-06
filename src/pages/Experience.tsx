@@ -8,7 +8,7 @@ const ExpContainer = styled.div`
   display: flex;
   justify-content: center;
   background-color: #fafafa;
-  padding: 5rem 0 10rem 0;
+  padding: 5rem 0 0 0;
 `;
 
 const ExpSection = styled.div`
@@ -77,7 +77,7 @@ const ExpDesc = styled.div`
 `;
 
 const TimelineContainer = styled.div`
-  width: 67%;
+  width: min(100%, 72rem);
   display: flex;
 `;
 

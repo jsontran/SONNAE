@@ -7,30 +7,55 @@ const ProjectsContainer = styled.div`
   display: flex;
   justify-content: center;
   background-color: #fafafa;
+  margin-top: 9.75rem;
+  padding-top: 0.25rem;
 `;
 
-const ProjectCard = styled.div``;
+const ProjCard = styled.div`
+  width: 20rem;
+  height: 30rem;
+  z-index: 1;
+  margin: min(15vw, 16rem) 1rem;
+  border-radius: 1rem;
+  
+  background-color: #fafafa10;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+
+  transition: all 1s ease;
+
+  &:hover {
+      transform: scale(1.05) translateY(-0rem);
+      box-shadow: 0px 5px 10px 0px #00000020;
+  }
+`;
 const ProjTitle = styled.div``;
 const ProjDesc = styled.div``;
 const Title = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
 const TitleLetters = styled.span`
-  font-size: 12vw;
+  font-size: min(12vw, 13rem);
   font-family: NeutralFace;
   font-weight: bold;
-  letter-spacing: 3vw;
+  letter-spacing: 3.5vw;
   user-select: none;
+
+  display: inline-block;
+  vertical-align: middle;
 
   color: #fafafa;
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
     1px 1px 0 black;
-  transition: all 0.25s ease-in;
+  transition: all 0.1s ease-in;
   &:hover {
-    font-size: 11.5vw;
+    font-size: min(11.5vw, 12rem);
   }
 `;
 
@@ -49,8 +74,7 @@ const iterateLetters = (index: number) => {
     ${TitleLetters}{
         animation:  flicker 10s infinite;
         animation-delay: ${index * 2}s;
-
-  opacity:${(6-index)*0.2}
+        opacity:${(6 - index) * 0.2 - 0.09}
       }
     `;
     j++;
@@ -62,7 +86,7 @@ const iterateLetters = (index: number) => {
 const TitleLayer = styled.div<TitleLayerProps>`
   ${(p) => iterateLetters(p.index)}
   text-align: center;
-  margin-left: 2vw;
+  margin-left: 2.5vw;
 
   @keyframes flicker {
     0% {
@@ -80,8 +104,7 @@ const TitleLayer = styled.div<TitleLayerProps>`
   }
 `;
 
-
-const titleLetters = ["PR", "OJ", "EC", "TS"];
+const titleLetters = ["P", "R", "O", "J", "E", "C", "T", "S"];
 const TitleLayers = ({ index }: TitleLayerProps) => {
   return (
     <TitleLayer index={index}>
@@ -98,12 +121,12 @@ type ProjectCardProps = {
   img: string;
 };
 
-const ProjectCards = ({ title, desc, img }: ProjectCardProps) => {
+const ProjCards = ({ title, desc, img }: ProjectCardProps) => {
   return (
-    <ProjectCard>
+    <ProjCard>
       <ProjTitle>{title}</ProjTitle>
       <ProjDesc>{desc}</ProjDesc>
-    </ProjectCard>
+    </ProjCard>
   );
 };
 
@@ -117,10 +140,10 @@ const Projects = () => {
         <TitleLayers index={4} />
         <TitleLayers index={5} />
       </Title>
-      <ProjectCards title={""} desc={""} img={""} />
-      <ProjectCards title={""} desc={""} img={""} />
-      <ProjectCards title={""} desc={""} img={""} />
-      <ProjectCards title={""} desc={""} img={""} />
+      <ProjCards title={""} desc={""} img={""} />
+      <ProjCards title={""} desc={""} img={""} />
+      <ProjCards title={""} desc={""} img={""} />
+      <ProjCards title={""} desc={""} img={""} />
     </ProjectsContainer>
   );
 };

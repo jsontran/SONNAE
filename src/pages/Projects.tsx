@@ -3,34 +3,70 @@ import styled, { keyframes } from "styled-components";
 
 const ProjectsContainer = styled.div`
   width: 100vw;
-  height: 110%;
+  height: fit-content;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   background-color: #fafafa;
   margin-top: 9.75rem;
   padding-top: 0.25rem;
 `;
 
+const Cards = styled.div`
+  width: min(80%, 86rem);
+  display: flex;
+  flex-direction: column;
+  margin-top: min(14vw, 15rem);
+  margin-bottom: min(14vw, 15rem);
+`;
+
 const ProjCard = styled.div`
-  width: 20rem;
-  height: 30rem;
   z-index: 1;
-  margin: min(15vw, 16rem) 1rem;
+  margin: 0.5rem 0.5rem;
   border-radius: 1rem;
-  
+
   background-color: #fafafa10;
   border: 1px solid rgba(0, 0, 0, 0.2);
 
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 
-  transition: all 1s ease;
-
+  transition: 0.25s ease;
   &:hover {
-      transform: scale(1.05) translateY(-0rem);
-      box-shadow: 0px 5px 10px 0px #00000020;
+    box-shadow: 0px 5px 10px 0px #00000020;
+    z-index: 100;
   }
 `;
+
+const VProjCard = styled(ProjCard)`
+  width: 35%;
+  height: 25rem;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+const HProjCard = styled(ProjCard)`
+  width: 65%;
+  height: 25rem;
+  &:hover {
+    transform: scaleX(1.027) scaleY(1.05);
+  }
+`;
+
+const LandProjCard = styled(ProjCard)`
+  width: calc(100%-0.5rem);
+  height: 25rem;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
+
+const PairProjCard = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const ProjTitle = styled.div``;
 const ProjDesc = styled.div``;
 const Title = styled.div`
@@ -44,7 +80,7 @@ const TitleLetters = styled.span`
   font-size: min(12vw, 13rem);
   font-family: NeutralFace;
   font-weight: bold;
-  letter-spacing: 3.5vw;
+  letter-spacing: min(2.5vw, 2.5rem);
   user-select: none;
 
   display: inline-block;
@@ -72,14 +108,13 @@ const iterateLetters = (index: number) => {
     }
     styles += `
     ${TitleLetters}{
-        animation:  flicker 10s infinite;
-        animation-delay: ${index * 2}s;
-        opacity:${(6 - index) * 0.2 - 0.09}
+        animation:  flicker 8s infinite;
+        animation-delay: ${index * 1}s;
+        opacity:${(9 - index) * 0.15 - 0.09}
       }
     `;
     j++;
   }
-  console.log(`${styles}}`);
   return `${styles}`;
 };
 
@@ -95,10 +130,10 @@ const TitleLayer = styled.div<TitleLayerProps>`
     2% {
       color: black;
     }
-    18% {
+    10% {
       color: black;
     }
-    20% {
+    12% {
       color: #fafafa;
     }
   }
@@ -116,34 +151,63 @@ const TitleLayers = ({ index }: TitleLayerProps) => {
 };
 
 type ProjectCardProps = {
+  type: string;
+  mode?: boolean;
   title: string;
   desc: string;
   img: string;
 };
 
-const ProjCards = ({ title, desc, img }: ProjectCardProps) => {
+const ProjCards = ({ type, mode, title, desc, img }: ProjectCardProps) => {
   return (
-    <ProjCard>
-      <ProjTitle>{title}</ProjTitle>
-      <ProjDesc>{desc}</ProjDesc>
-    </ProjCard>
+    <>
+      {type === "PAIR" ? (
+        mode ? (
+          <PairProjCard>
+            <HProjCard>
+              <ProjTitle>{title}</ProjTitle>
+              <ProjDesc>{desc}</ProjDesc>
+            </HProjCard>
+            <VProjCard>
+              <ProjTitle>{title}</ProjTitle>
+              <ProjDesc>{desc}</ProjDesc>
+            </VProjCard>
+          </PairProjCard>
+        ) : (
+          <PairProjCard>
+            <VProjCard>
+              <ProjTitle>{title}</ProjTitle>
+              <ProjDesc>{desc}</ProjDesc>
+            </VProjCard>
+            <HProjCard>
+              <ProjTitle>{title}</ProjTitle>
+              <ProjDesc>{desc}</ProjDesc>
+            </HProjCard>
+          </PairProjCard>
+        )
+      ) : (
+        <LandProjCard>
+          <ProjTitle>{title}</ProjTitle>
+          <ProjDesc>{desc}</ProjDesc>
+        </LandProjCard>
+      )}
+    </>
   );
 };
-
+const indices = [1, 2, 3, 4, 5, 6, 7, 8];
 const Projects = () => {
   return (
     <ProjectsContainer id="Projects">
       <Title>
-        <TitleLayers index={1} />
-        <TitleLayers index={2} />
-        <TitleLayers index={3} />
-        <TitleLayers index={4} />
-        <TitleLayers index={5} />
+        {indices.map((index) => (
+          <TitleLayers index={index} />
+        ))}
       </Title>
-      <ProjCards title={""} desc={""} img={""} />
-      <ProjCards title={""} desc={""} img={""} />
-      <ProjCards title={""} desc={""} img={""} />
-      <ProjCards title={""} desc={""} img={""} />
+      <Cards>
+        <ProjCards type={"PAIR"} mode={false} title={""} desc={""} img={""} />
+        <ProjCards type={"PAIR"} mode={true} title={""} desc={""} img={""} />
+        <ProjCards type={"LAND"} title={""} desc={""} img={""} />
+      </Cards>
     </ProjectsContainer>
   );
 };

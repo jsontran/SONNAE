@@ -37,7 +37,7 @@ const ExpCard = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  transition: all 1s ease;
+  transition: all 0.25s ease;
 `;
 
 const Timeline = styled.div`

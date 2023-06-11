@@ -39,15 +39,8 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
     max-width: 100%;
     overflow-x: hidden;
-    
-  
-  
-  
-  overflow-x: hidden; 
-    max-width: 100%;
     margin: 0;
-    overflow-x: hidden;
-  background-color: #fafafa;
+    background-color: #fafafa;
   }
 `;
 

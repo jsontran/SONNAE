@@ -8,8 +8,8 @@ const ProjectsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #fafafa;
-  margin-top: 9.75rem;
-  padding-top: 0.25rem;
+  margin-top: 8rem;
+  padding-top: 2rem;
 `;
 
 const Cards = styled.div`
@@ -24,13 +24,10 @@ const ProjCard = styled.div`
   z-index: 1;
   margin: 0.5rem 0.5rem;
   border-radius: 1rem;
-
   background-color: #fafafa10;
   border: 1px solid rgba(0, 0, 0, 0.2);
-
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-
   transition: 0.25s ease;
   &:hover {
     box-shadow: 0px 5px 10px 0px #00000020;
@@ -45,6 +42,7 @@ const VProjCard = styled(ProjCard)`
     transform: scale(1.05);
   }
 `;
+
 const HProjCard = styled(ProjCard)`
   width: 65%;
   height: 25rem;
@@ -54,7 +52,7 @@ const HProjCard = styled(ProjCard)`
 `;
 
 const LandProjCard = styled(ProjCard)`
-  width: calc(100%-0.5rem);
+  width: calc(100% - 0.5rem);
   height: 25rem;
   &:hover {
     transform: scale(1.05);
@@ -69,6 +67,7 @@ const PairProjCard = styled.div`
 
 const ProjTitle = styled.div``;
 const ProjDesc = styled.div``;
+
 const Title = styled.div`
   position: absolute;
   display: flex;
@@ -82,13 +81,10 @@ const TitleLetters = styled.span`
   font-weight: bold;
   letter-spacing: min(2.5vw, 2.5rem);
   user-select: none;
-
   display: inline-block;
   vertical-align: middle;
-
   color: #fafafa;
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
-    1px 1px 0 black;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
   transition: all 0.1s ease-in;
   &:hover {
     font-size: min(11.5vw, 12rem);
@@ -107,15 +103,15 @@ const iterateLetters = (index: number) => {
       j -= 5;
     }
     styles += `
-    ${TitleLetters}{
-        animation:  flicker 8s infinite;
+      ${TitleLetters} {
+        animation: flicker 8s infinite;
         animation-delay: ${index * 1}s;
-        opacity:${(9 - index) * 0.15 - 0.09}
+        opacity: ${(9 - index) * 0.15 - 0.09};
       }
     `;
     j++;
   }
-  return `${styles}`;
+  return styles;
 };
 
 const TitleLayer = styled.div<TitleLayerProps>`
@@ -140,6 +136,7 @@ const TitleLayer = styled.div<TitleLayerProps>`
 `;
 
 const titleLetters = ["P", "R", "O", "J", "E", "C", "T", "S"];
+
 const TitleLayers = ({ index }: TitleLayerProps) => {
   return (
     <TitleLayer index={index}>
@@ -194,13 +191,15 @@ const ProjCards = ({ type, mode, title, desc, img }: ProjectCardProps) => {
     </>
   );
 };
+
 const indices = [1, 2, 3, 4, 5, 6, 7, 8];
+
 const Projects = () => {
   return (
     <ProjectsContainer id="Projects">
       <Title>
         {indices.map((index) => (
-          <TitleLayers index={index} />
+          <TitleLayers index={index} key={index} />
         ))}
       </Title>
       <Cards>

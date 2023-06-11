@@ -30,21 +30,23 @@ const Pills = styled.a`
 const Copyright = styled.div`
   font-size: 1rem;
   font-family: Archia;
-  margin-left: 2rem;
+  margin-left: 4rem;
+  margin-right: 6rem;
 `;
 
 const IconsContainer = styled.div`
   font-size: 1rem;
   font-family: Archia;
-  margin-right: 2rem;
+  margin-right: 4rem;
+  margin-left: 4rem;
 `;
 
 const links = [
-  "jjsontran@gmail.com",
   "https://www.github.com/jsontran",
   "https://www.linkedin.com/jsontran",
+  "jjsontran@gmail.com",
 ];
-const labels = ["EMAIL", "GITHUB", "LINKEDIN"];
+const labels = ["GITHUB", "LINKEDIN", "EMAIL"];
 const Contact = () => {
   return (
     <ContactContainer id="Contact">

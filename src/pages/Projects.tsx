@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 const ProjectsContainer = styled.div`
   width: 100vw;
@@ -12,61 +13,103 @@ const ProjectsContainer = styled.div`
   padding-top: 2rem;
 `;
 
-const Cards = styled.div`
-  width: min(80%, 86rem);
+const ProjCards = styled.div`
+  width: min(70%, 86rem);
   display: flex;
   flex-direction: column;
   margin-top: min(14vw, 15rem);
   margin-bottom: min(14vw, 15rem);
+  cursor: pointer;
+`;
+
+const ProjImg = styled.img`
+  position: absolute;
+  object-fit: cover;
+  float: right;
+  width: 100%;
+  height: 100%;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.85) 40%,
+    rgba(0, 0, 0, 0) 120%
+  );
+  transform: scale(1.01);
+  transition: 0.25s all ease;
 `;
 
 const ProjCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 1rem 0;
+  overflow: hidden;
+  opacity: 98%;
+
   z-index: 1;
   margin: 0.5rem 0.5rem;
   border-radius: 1rem;
-  background-color: #fafafa10;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgb(250, 250, 250);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 1) 60%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.8);
   -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  transition: 0.25s ease;
+  backdrop-filter: blur(5px);
+  transition: 0.25s all ease;
   &:hover {
-    box-shadow: 0px 5px 10px 0px #00000020;
+    box-shadow: 0px 5px 10px 0px #ffffff1f;
     z-index: 100;
+    ${ProjImg}:first-child {
+      transform: scale(1.1) translateY(-1rem);
+    }
   }
 `;
 
 const VProjCard = styled(ProjCard)`
-  width: 35%;
-  height: 25rem;
+  width: calc(35% - 1rem);
+  height: 20rem;
   &:hover {
     transform: scale(1.05);
   }
 `;
 
 const HProjCard = styled(ProjCard)`
-  width: 65%;
-  height: 25rem;
+  width: calc(65% - 1rem);
+  height: 20rem;
   &:hover {
     transform: scaleX(1.027) scaleY(1.05);
   }
 `;
 
 const LandProjCard = styled(ProjCard)`
-  width: calc(100% - 0.5rem);
-  height: 25rem;
+  width: calc(100% - 1rem);
+  height: 20rem;
   &:hover {
     transform: scale(1.05);
   }
 `;
 
-const PairProjCard = styled.div`
+const PairProjCard = styled.div<{ reverse: boolean }>`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: ${(props) => (props.reverse ? "row-reverse" : "row")};
 `;
 
-const ProjTitle = styled.div``;
-const ProjDesc = styled.div``;
+const ProjTitle = styled.div`
+  color: white;
+  font-family: NeutralFace;
+  font-weight: bold;
+  font-size: 1.5rem;
+  z-index: 1;
+  margin: 12rem 1rem 0.5rem;
+`;
+const ProjDesc = styled.div`
+  font-family: Archia;
+  font-size: 1rem;
+  z-index: 1;
+  margin: 0 1rem;
+  color: white;
+`;
 
 const Title = styled.div`
   position: absolute;
@@ -84,129 +127,140 @@ const TitleLetters = styled.span`
   display: inline-block;
   vertical-align: middle;
   color: #fafafa;
-  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black,
+    1px 1px 0 black;
   transition: all 0.1s ease-in;
   &:hover {
     font-size: min(11.5vw, 12rem);
   }
 `;
 
-type TitleLayerProps = {
-  index: number;
-};
-
-const iterateLetters = (index: number) => {
-  let styles = "";
-  let j = index;
-  for (let i = 1; i <= 6; i++) {
-    if (j > 5) {
-      j -= 5;
-    }
-    styles += `
-      ${TitleLetters} {
-        animation: flicker 8s infinite;
-        animation-delay: ${index * 1}s;
-        opacity: ${(9 - index) * 0.15 - 0.09};
-      }
-    `;
-    j++;
-  }
-  return styles;
-};
-
-const TitleLayer = styled.div<TitleLayerProps>`
-  ${(p) => iterateLetters(p.index)}
+const TitleLayer = styled.div`
   text-align: center;
   margin-left: 2.5vw;
+`;
 
-  @keyframes flicker {
-    0% {
-      color: #fafafa;
-    }
-    2% {
-      color: black;
-    }
-    10% {
-      color: black;
-    }
-    12% {
-      color: #fafafa;
-    }
+const animateFlicker = keyframes`
+  0% {
+    color: #fafafa;
+  }
+  2% {
+    color: black;
+  }
+  10% {
+    color: black;
+  }
+  12% {
+    color: #fafafa;
   }
 `;
 
-const titleLetters = ["P", "R", "O", "J", "E", "C", "T", "S"];
+type StyledTitleLettersProps = {
+  index: number;
+  delay: number;
+};
+const StyledTitleLetters = styled(TitleLetters)<StyledTitleLettersProps>`
+  animation: ${animateFlicker} 7s infinite;
+  animation-delay: ${(props) => props.delay}s;
+  opacity: ${(props) => (8 - props.index) * 0.15 - 0.09};
+`;
 
-const TitleLayers = ({ index }: TitleLayerProps) => {
+const TitleLayers = ({ index }: { index: number }) => {
+  const titleLetters = ["P", "R", "O", "J", "E", "C", "T", "S"];
+
   return (
-    <TitleLayer index={index}>
-      {titleLetters.map((item) => (
-        <TitleLetters>{item}</TitleLetters>
+    <TitleLayer>
+      {titleLetters.map((letter, i) => (
+        <StyledTitleLetters key={i} index={index} delay={index}>
+          {letter}
+        </StyledTitleLetters>
       ))}
     </TitleLayer>
   );
 };
 
-type ProjectCardProps = {
-  type: string;
-  mode?: boolean;
-  title: string;
+type CardContent = {
+  title: string | string[];
   desc: string;
-  img: string;
+  img: string | string[];
 };
 
-const ProjCards = ({ type, mode, title, desc, img }: ProjectCardProps) => {
+const CardContent = ({ title, desc, img }: CardContent) => {
+  const src = Array.isArray(img) ? img[0] : img;
   return (
     <>
-      {type === "PAIR" ? (
-        mode ? (
-          <PairProjCard>
-            <HProjCard>
-              <ProjTitle>{title}</ProjTitle>
-              <ProjDesc>{desc}</ProjDesc>
-            </HProjCard>
-            <VProjCard>
-              <ProjTitle>{title}</ProjTitle>
-              <ProjDesc>{desc}</ProjDesc>
-            </VProjCard>
-          </PairProjCard>
-        ) : (
-          <PairProjCard>
-            <VProjCard>
-              <ProjTitle>{title}</ProjTitle>
-              <ProjDesc>{desc}</ProjDesc>
-            </VProjCard>
-            <HProjCard>
-              <ProjTitle>{title}</ProjTitle>
-              <ProjDesc>{desc}</ProjDesc>
-            </HProjCard>
-          </PairProjCard>
-        )
+      <ProjImg src={src} />
+      <ProjTitle>{title}</ProjTitle>
+      <ProjDesc>{desc}</ProjDesc>
+    </>
+  );
+};
+
+type ProjCardProps = CardContent & {
+  type: string;
+  reverse?: boolean;
+};
+
+const ProjCardsLayer = ({ type, reverse, title, desc, img }: ProjCardProps) => {
+  const isPairType = type === "PAIR";
+
+  return (
+    <>
+      {isPairType ? (
+        <PairProjCard reverse={reverse || false}>
+          <VProjCard>
+            <CardContent title={title[0]} desc={desc} img={img[0]} />
+          </VProjCard>
+          <HProjCard>
+            <CardContent title={title[1]} desc={desc} img={img[1]} />
+          </HProjCard>
+        </PairProjCard>
       ) : (
         <LandProjCard>
-          <ProjTitle>{title}</ProjTitle>
-          <ProjDesc>{desc}</ProjDesc>
+          <CardContent title={title} desc={desc} img={img} />
         </LandProjCard>
       )}
     </>
   );
 };
 
-const indices = [1, 2, 3, 4, 5, 6, 7, 8];
-
 const Projects = () => {
+  const indices = [1, 2, 3, 4, 5, 6, 7];
+
   return (
     <ProjectsContainer id="Projects">
       <Title>
         {indices.map((index) => (
-          <TitleLayers index={index} key={index} />
+          <TitleLayers key={index} index={index} />
         ))}
       </Title>
-      <Cards>
-        <ProjCards type={"PAIR"} mode={false} title={""} desc={""} img={""} />
-        <ProjCards type={"PAIR"} mode={true} title={""} desc={""} img={""} />
-        <ProjCards type={"LAND"} title={""} desc={""} img={""} />
-      </Cards>
+      <ProjCards>
+        <ProjCardsLayer
+          type="PAIR"
+          title={["Tic Tac Toe Minimax", "MERN VOID"]}
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Fusce pulvinar fermentum lorem, a dapibus ex mattis nec. Donec sit amet lectus 
+                quam. Praesent commodo ante in justo finibus congue. Curabitur vel viverra "
+          img={["./assets/cardArts/tictactoe.png", "./assets/cardArts/MERN.jpg"]}
+        />
+        <ProjCardsLayer
+          type="PAIR"
+          reverse
+          title={["CabTap", "London Transit"]}
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Fusce pulvinar fermentum lorem, a dapibus ex mattis nec. Donec sit amet lectus 
+                quam. Praesent commodo ante in justo finibus congue. Curabitur vel viverra "
+          img={["./assets/cardArts/Taxi.jpeg", "./assets/cardArts/london.jpeg"]}
+        />
+        <ProjCardsLayer
+          type="LAND"
+          title="KIRBY'S DREAMLAND 1992"
+          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                Fusce pulvinar fermentum lorem, a dapibus ex mattis nec. Donec sit amet lectus 
+                quam. Praesent commodo ante in justo finibus congue. Curabitur vel viverra "
+          img="./assets/cardArts/Kirby.jpg"
+        />
+      </ProjCards>
     </ProjectsContainer>
   );
 };

@@ -74,7 +74,7 @@ const ExpTitle = styled.div`
 const ExpDesc = styled.div`
   padding: 0 2rem 2rem;
   font-family: Archia;
-  font-size: 1.25rem;
+  font-size: 1rem;
 `;
 
 const TimelineContainer = styled.div`

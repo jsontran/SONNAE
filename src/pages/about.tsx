@@ -24,7 +24,7 @@ const PictureCard = styled.img`
 `;
 
 const AboutText = styled.div`
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-family: Archia;
 
   margin: 0 1rem 0 1rem;

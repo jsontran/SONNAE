@@ -56,7 +56,7 @@ const NavMenu = styled.div`
 `;
 
 const Icon = css`
-  width: 1.5rem;
+  width: 5rem;
   height: 1.5rem;
   margin: 1rem;
   z-index: 998;

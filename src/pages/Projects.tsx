@@ -29,9 +29,9 @@ const ProjImg = styled.img`
   width: 100%;
   height: 100%;
   mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.85) 40%,
-    rgba(0, 0, 0, 0) 120%
+    180deg,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(0, 0, 0, 0.15) 80%
   );
   transform: scale(1.01);
   transition: 0.25s all ease;
@@ -50,8 +50,8 @@ const ProjCard = styled.div`
   background: rgb(250, 250, 250);
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 1) 60%
+    rgba(0, 0, 0, 0) 30%,
+    rgba(0, 0, 0, 1) 70%
   );
   border: 1px solid rgba(255, 255, 255, 0.8);
   -webkit-backdrop-filter: blur(10px);
@@ -101,9 +101,10 @@ const ProjTitle = styled.div`
   font-weight: bold;
   font-size: 1.5rem;
   z-index: 1;
-  margin: 12rem 1rem 0.5rem;
+  margin: 14rem 1rem 0.5rem;
 `;
 const ProjDesc = styled.div`
+  height: fit-content;
   font-family: Archia;
   font-size: 1rem;
   z-index: 1;
@@ -181,7 +182,7 @@ const TitleLayers = ({ index }: { index: number }) => {
 
 type CardContent = {
   title: string | string[];
-  desc: string;
+  desc: string | string[];
   img: string | string[];
 };
 
@@ -203,16 +204,21 @@ type ProjCardProps = CardContent & {
 
 const ProjCardsLayer = ({ type, reverse, title, desc, img }: ProjCardProps) => {
   const isPairType = type === "PAIR";
+  const [title1, title2] = reverse
+    ? [title[1], title[0]]
+    : [title[0], title[1]];
+  const [desc1, desc2] = reverse ? [desc[1], desc[0]] : [desc[0], desc[1]];
+  const [img1, img2] = reverse ? [img[1], img[0]] : [img[0], img[1]];
 
   return (
     <>
       {isPairType ? (
         <PairProjCard reverse={reverse || false}>
           <VProjCard>
-            <CardContent title={title[0]} desc={desc} img={img[0]} />
+            <CardContent title={title1} desc={desc1} img={img1} />
           </VProjCard>
           <HProjCard>
-            <CardContent title={title[1]} desc={desc} img={img[1]} />
+            <CardContent title={title2} desc={desc2} img={img2} />
           </HProjCard>
         </PairProjCard>
       ) : (
@@ -238,27 +244,38 @@ const Projects = () => {
         <ProjCardsLayer
           type="PAIR"
           title={["Tic Tac Toe Minimax", "MERN VOID"]}
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Fusce pulvinar fermentum lorem, a dapibus ex mattis nec. Donec sit amet lectus 
-                quam. Praesent commodo ante in justo finibus congue. Curabitur vel viverra "
-          img={["./assets/cardArts/tictactoe.png", "./assets/cardArts/MERN.jpg"]}
+          desc={[
+            `Interactive Python script implementation of Minimax AI Algorithm with 
+            Alpha-Beta pruning in Tic-Tac-Toe.`,
+            `A user-centric, self-expression platform to support mental health by allowing 
+            users to vent into the void with auto-deletion after 2 hours. Utilized Express, 
+            Node.js, and MongoDB with Mongoose, and developed a responsive React front-end 
+            with JavaScript and Sass.`,
+          ]}
+          img={["./assets/covers/tictactoe.png", "./assets/covers/MERN.jpg"]}
         />
         <ProjCardsLayer
           type="PAIR"
           reverse
           title={["CabTap", "London Transit"]}
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Fusce pulvinar fermentum lorem, a dapibus ex mattis nec. Donec sit amet lectus 
-                quam. Praesent commodo ante in justo finibus congue. Curabitur vel viverra "
-          img={["./assets/cardArts/Taxi.jpeg", "./assets/cardArts/london.jpeg"]}
+          desc={[
+            `Community-driven ride-share application using Google's Maps API. Users have control 
+            over their rides through community ratings, carpooling, and a rewards program, allowing 
+            users to earn points through in-app games.`,
+            `Interactive Python app with advanced algorithms for efficient 
+            pathfinding and urbanism diagnosis. `,
+          ]}
+          img={["./assets/covers/Taxi.jpeg", "./assets/covers/london.jpeg"]}
         />
         <ProjCardsLayer
           type="LAND"
           title="KIRBY'S DREAMLAND 1992"
-          desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Fusce pulvinar fermentum lorem, a dapibus ex mattis nec. Donec sit amet lectus 
-                quam. Praesent commodo ante in justo finibus congue. Curabitur vel viverra "
-          img="./assets/cardArts/Kirby.jpg"
+          desc={`Recreated the first level and boss battle from \"Kirby Dream Land\" using 
+          Visual Basic.NET. Employed Object-Oriented Programming and utilized integrated toolbox, 
+          and event-handlers to create engaging in-game interactions and user controls, resulting 
+          in a highly responsive gameplay experience. The project demonstrates proficiency 
+          in rendering, animation, hit-boxes, and real-time interactions. `}
+          img="./assets/covers/Kirby.jpg"
         />
       </ProjCards>
     </ProjectsContainer>

@@ -11,6 +11,10 @@ const ExpContainer = styled.div`
   padding: 2rem 0 0 0;
 `;
 
+const Background = styled.img`
+  
+`
+
 const ExpSection = styled.div`
   height: max(100%, fit-content);
   display: flex;
@@ -37,6 +41,7 @@ const ExpCard = styled.div`
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   transition: all 0.25s ease;
+  padding: 0 2rem 1rem 2rem;
 `;
 
 const Timeline = styled.div`
@@ -64,17 +69,27 @@ const ExpTitle = styled.div`
   font-family: NeutraLFace;
   font-weight: bold;
   font-size: 3rem;
-  letter-spacing: 0.05em;
-  padding-right: 0.25rem;
-  margin: -1.75rem 0 1rem -1.5rem;
+  letter-spacing: 0.05rem;
+  padding: 0 0.5rem;
+  margin: -1.5rem -5rem 0.5rem -1.5rem;
   background-color: #fafafa;
   color: #1e1d1d;
 `;
 
+const ExpSubtitle = styled.div`
+  width: fit-content;
+  font-family: Skmodernist;
+  font-size: 1.5;
+  letter-spacing: 2px;
+  padding: 0 0 1rem;
+  color: #757575;
+`;
+
 const ExpDesc = styled.div`
-  padding: 0 2rem 2rem;
+  padding: 0 0 1rem;
   font-family: Archia;
   font-size: 1rem;
+  white-space: normal;
 `;
 
 const TimelineContainer = styled.div`
@@ -107,61 +122,69 @@ const ExperienceCardContainer = styled(Timeline)`
 
 type ExperienceCardProps = {
   title: string;
-  desc: string;
+  subtitle: string;
+  desc: string | string[];
   img: string;
 };
 
-const ExperienceCard = ({ title, desc, img }: ExperienceCardProps) => {
+const ExperienceCard = ({
+  title,
+  subtitle,
+  desc,
+  img,
+}: ExperienceCardProps) => {
   return (
     <ExperienceCardContainer>
       <Icon src={img} />
       <ExpCard>
         <ExpTitle>{title}</ExpTitle>
-        <ExpDesc>{desc}</ExpDesc>
+        <ExpSubtitle>{subtitle}</ExpSubtitle>
+        {Array.isArray(desc) ? (
+          desc.map((item) => (
+            <>
+              <ExpDesc>{item}</ExpDesc>
+            </>
+          ))
+        ) : (
+          <ExpDesc>{desc}</ExpDesc>
+        )}
       </ExpCard>
     </ExperienceCardContainer>
   );
 };
 
 const Experience = () => {
-  const evertzDesc = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-    Fusce pulvinar fermentum lorem, a dapibus ex mattis nec. Donec sit amet lectus 
-    quam. Praesent commodo ante in justo finibus congue. Curabitur vel viverra 
-    arcu. Quisque ultrices quis mi consequat malesuada. Lorem ipsum dolor sit amet, 
-    consectetur adipiscing elit. Nullam et egestas ex, sit amet fringilla diam. 
-    Praesent rhoncus felis sit amet ex tempus facilisis. Morbi condimentum interdum 
-    dolor in consectetur. Pellentesque non nisl eu nisi varius tincidunt. Integer 
-    nec purus dapibus, ultrices enim quis, consectetur turpis. Vestibulum et nisi 
-    mollis, ornare mauris eget, varius metus. Sed augue magna, congue a lorem ut, 
-    hendrerit tincidunt velit. In hac habitasse platea dictumst.`;
+  const evertzDesc = `A part of a project-driven unit to be challenged to design and 
+  develop software used in leading television broadcast and film production facilities 
+  internationally, including CBC, ABC, NBC, HBO, and the BBC.`;
 
-  const patternDesc = `Mentored under Peter Nguyen, and Rohan Bhangui, 
-    I worked in a full-stack web development environment 
-    to solve problems for the hourly workforce. 
-    Responsibilities included reducing production errors, 
-    implementing modular web components, and ensuring a high 
-    standard of quality through testing. The previous was 
-    achieved through translating design flows into responsive 
-    webpages, built flexible dashboards, and increased 
-    modularity through the use of Storybook. Furthermore, 
-    by developing support for mobile fluidity through the backend, 
-    it enhances the user experience.`;
+  const patternDesc = [
+    `Contributed within a full-stack web development environment
+    to solve problems for the hourly workforce.`,
 
-  const mcmasterDesc = `With the Summer Research Position Award, I had 
-    the opportunity to work under Dr. Mark Lawford, Dr. Alan Wassyng, and 
-    Dr. Vera Pantelic in the Department of Computing and Software. I was 
-    assigned to work on the Reach/Coreach tool which highlights data and 
-    control flow in a Simulink model with the MatLab IDE. The tool 
-    identifies the selection's dependant blocks and/or the block that 
-    depended on the it.`;
+    `It was achieved by reducing production 
+    errors through the implementation of modular web components, and ensuring a high 
+    standard of quality through testing driven developement. Includes but not limited 
+    to translating design flows into responsive webpages, building flexible dashboards, 
+    refactoring to increased modularity and developing support for mobile fluidity.`,
+  ];
 
-  const dscDesc = `Powered by the Developer Student Clubs, Google Developers. 
-    The club's goal is to encourage and teach students about Google Developer 
-    Techonolgies along with other aspects of the Software Engineering industry.
+  const mcmasterDesc = [
+    `With the Summer Research Position Award, I had the opportunity 
+    to work under Dr. Mark Lawford, Dr. Alan Wassyng, and Dr. Vera Pantelic in the 
+    Department of Computing and Software.`,
+    `Assigned to work on the Reach/Coreach tool which highlights data and control 
+    flow in a Simulink model within the MatLab IDE. The tool identifies the 
+    selection's dependant blocks and/or the block that depended on the it.`,
+  ];
 
-    As one of the Lead of Marketing & Branding, I helped lead a team of 20 and 
-    helped recruited over 400 members. I specifically worked and taught Photoshop 
-    and Figma.`;
+  const dscDesc = [
+    `Powered by the Developer Student Clubs, Google Developers.`,
+    `The club's mission is to encourage and teach students about Google Developer 
+    Techonolgies along with other aspects of the Software Engineering industry.`,
+    `As the Lead of Marketing & Branding, I helped lead a team of 20 and 
+    helped recruited over 400 members in its inaugral year.`,
+  ];
 
   return (
     <ExpContainer id="Experience">
@@ -170,21 +193,25 @@ const Experience = () => {
         <ExpSection>
           <ExperienceCard
             title="Evertz"
+            subtitle="Software Engineer | May '23 - Present"
             desc={evertzDesc}
             img={"./assets/evertz.png"}
           />
           <ExperienceCard
             title="Pattern"
+            subtitle="Software Engineer | May '22 - Aug '22"
             desc={patternDesc}
             img={"./assets/pattern.jpeg"}
           />
           <ExperienceCard
             title="McSCert"
+            subtitle="Research Assistant | May '21 - Aug '21"
             desc={mcmasterDesc}
             img={"./assets/mcscert.png"}
           />
           <ExperienceCard
             title="Google DSC"
+            subtitle="Vice President of Marketing | Sept '20 - Apr '20"
             desc={dscDesc}
             img={"./assets/dsc.png"}
           />

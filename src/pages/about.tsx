@@ -155,6 +155,11 @@ const Title = styled.p`
 `;
 
 const About = () => {
+
+  const handleLink = (link: string) => {
+    window.open(link)
+  }
+
   return (
     <AboutContainer id="About">
       <CardContainer>
@@ -175,9 +180,9 @@ const About = () => {
               world that can create an efficient and innovative use of time.
             </AboutText>
             <ContactContainer>
-              <Email as={EmailIcon} />
-              <Linkedin as={LinkedInIcon} />
-              <Github as={GitHubIcon} />
+              <Email as={EmailIcon} onClick={() => handleLink("jjsontran@gmail.com")}/>
+              <Linkedin as={LinkedInIcon} onClick={() => handleLink("https://www.linkedin.com/in/jsontran/")}/>
+              <Github as={GitHubIcon} onClick={()=>handleLink("https://github.com/jsontran")}/>
             </ContactContainer>
           </InfoContainer>
         </AboutCard>

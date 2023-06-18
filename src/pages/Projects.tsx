@@ -200,29 +200,48 @@ const CardContent = ({ title, desc, img }: CardContent) => {
 type ProjCardProps = CardContent & {
   type: string;
   reverse?: boolean;
+  link: string | string[];
 };
 
-const ProjCardsLayer = ({ type, reverse, title, desc, img }: ProjCardProps) => {
+const ProjCardsLayer = ({
+  type,
+  reverse,
+  title,
+  desc,
+  img,
+  link,
+}: ProjCardProps) => {
   const isPairType = type === "PAIR";
   const [title1, title2] = reverse
     ? [title[1], title[0]]
     : [title[0], title[1]];
   const [desc1, desc2] = reverse ? [desc[1], desc[0]] : [desc[0], desc[1]];
   const [img1, img2] = reverse ? [img[1], img[0]] : [img[0], img[1]];
+  const [link1, link2] = reverse ? [link[1], link[0]] : [link[0], link[1]];
+
+  const handleLink = (link: string) => {
+    window.open(link);
+  };
 
   return (
     <>
       {isPairType ? (
         <PairProjCard reverse={reverse || false}>
-          <VProjCard>
+          <VProjCard onClick={() => handleLink(link1)}>
             <CardContent title={title1} desc={desc1} img={img1} />
           </VProjCard>
-          <HProjCard>
+          <HProjCard onClick={() => handleLink(link2)}>
             <CardContent title={title2} desc={desc2} img={img2} />
           </HProjCard>
         </PairProjCard>
       ) : (
-        <LandProjCard>
+        <LandProjCard
+          onClick={() => {
+            if (typeof link === "string") {
+              handleLink(link);
+            }
+          }}
+        >
           <CardContent title={title} desc={desc} img={img} />
         </LandProjCard>
       )}
@@ -253,6 +272,7 @@ const Projects = () => {
             with JavaScript and Sass.`,
           ]}
           img={["./assets/covers/tictactoe.png", "./assets/covers/MERN.jpg"]}
+          link={["https://github.com/jsontran/tictactoe-minimax", "https://github.com/jsontran/MERN-Void"]}
         />
         <ProjCardsLayer
           type="PAIR"
@@ -266,6 +286,7 @@ const Projects = () => {
             pathfinding and urbanism diagnosis. `,
           ]}
           img={["./assets/covers/Taxi.jpeg", "./assets/covers/london.jpeg"]}
+          link={["https://github.com/yousamasham/CabTap", "https://github.com/jsontran/London-Transit-App"]}
         />
         <ProjCardsLayer
           type="LAND"
@@ -276,6 +297,7 @@ const Projects = () => {
           in a highly responsive gameplay experience. The project demonstrates proficiency 
           in rendering, animation, hit-boxes, and real-time interactions. `}
           img="./assets/covers/Kirby.jpg"
+          link={"https://github.com/jsontran/KirbyGame"}
         />
       </ProjCards>
     </ProjectsContainer>

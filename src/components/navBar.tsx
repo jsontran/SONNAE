@@ -1,7 +1,12 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { StyledEngineProvider } from "@mui/material";
-import { Face2 as Face2Icon, Work as WorkIcon, StarBorder as StarBorderIcon, Code as CodeIcon } from "@mui/icons-material";
+import {
+  Face2 as Face2Icon,
+  Work as WorkIcon,
+  StarBorder as StarBorderIcon,
+  Code as CodeIcon,
+} from "@mui/icons-material";
 
 const NavBarContainer = styled.div`
   position: fixed;
@@ -16,6 +21,10 @@ const NavBarContainer = styled.div`
   z-index: 999;
   scroll-behavior: smooth;
   transition: all 0.25s ease;
+
+  @media (max-width: 420px) {
+    width: calc(3rem + 2px);
+  }
 `;
 
 const MenuComponent = styled.div`
@@ -53,12 +62,29 @@ const NavMenu = styled.div`
       transform: rotate(-45deg) translate(3.5px, -2.5px);
     }
   }
+
+  @media (max-width: 420px) {
+    width: 1rem;
+    height: 1rem;
+
+    &.active {
+      ${MenuComponent}:first-child {
+        background-color: #1e1d1d;
+        transform-origin: top center;
+        transform: rotate(45deg) translate(3.5px, 1.5px);
+      }
+
+      ${MenuComponent}:last-child {
+        background-color: #1e1d1d;
+        transform-origin: bottom center;
+        transform: rotate(-45deg) translate(3px, -1.5px);
+      }
+    }
+  }
 `;
 
 const Icon = css`
-  width: 5rem;
-  height: 1.5rem;
-  margin: 1rem;
+  margin: 0.75rem;
   z-index: 998;
   color: #505050;
   cursor: pointer;
@@ -69,18 +95,14 @@ const Icon = css`
     color: #1e1d1d;
     transform: scale(1.2);
   }
+
+  @media (max-width: 420px) {
+    margin: 0.5rem;
+  }
 `;
 
 const StyledIcon = styled.div`
   ${Icon}
-`;
-
-const Work = styled(StyledIcon)`
-  transform: scale(1.4);
-
-  &:hover {
-    transform: scale(1.6);
-  }
 `;
 
 const Star = styled(StyledIcon)`
@@ -88,6 +110,29 @@ const Star = styled(StyledIcon)`
 
   &:hover {
     transform: scale(1.6);
+  }
+  @media (max-width: 420px) {
+    transform: scale(1.3);
+
+    &:hover {
+      transform: scale(1.3);
+    }
+  }
+`;
+
+const Work = styled(StyledIcon)`
+  transform: scale(1.3);
+
+  &:hover {
+    transform: scale(1.6);
+  }
+
+  @media (max-width: 420px) {
+    transform: scale(1);
+
+    &:hover {
+      transform: scale(1);
+    }
   }
 `;
 
@@ -97,15 +142,34 @@ const Code = styled(StyledIcon)`
   &:hover {
     transform: scale(1.3);
   }
+  @media (max-width: 420px) {
+    transform: scale(1.15);
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
 `;
 
-const Face = styled(StyledIcon)``;
+const Face = styled(StyledIcon)`
+  @media (max-width: 420px) {
+    transform: scale(1);
+
+    &:hover {
+      transform: scale(1);
+    }
+  }
+`;
 
 const NavItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
+
+  padding: 0.5rem 1px;
+
   transition: all 0.5s ease;
   z-index: 998;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -134,7 +198,10 @@ const NavBar: React.FC<NavBarProps> = ({ navState, setNavState }) => {
   return (
     <StyledEngineProvider injectFirst>
       <NavBarContainer>
-        <NavMenu className={navState ? "active" : ""} onClick={() => setNavState(!navState)}>
+        <NavMenu
+          className={navState ? "active" : ""}
+          onClick={() => setNavState(!navState)}
+        >
           <MenuComponent />
           <MenuComponent />
         </NavMenu>

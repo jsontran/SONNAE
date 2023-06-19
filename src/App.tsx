@@ -13,10 +13,10 @@ const App = () => {
     <>
       <NavBar navState={navState} setNavState={setNavState} />
       <Home />
-      <About />
+      {/* <About />
       <Experience />
       <Projects />
-      <Contact />
+      <Contact /> */}
     </>
   );
 };

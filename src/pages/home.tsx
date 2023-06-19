@@ -53,9 +53,9 @@ const SubText = styled.p`
 
 const TitleContainer = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(140%, 500%);
+  top: calc(50vh + 18vw);
+  right: 2.5vw;
+  /* transform: translate(140%, 500%); */
 `;
 
 const Home = () => {

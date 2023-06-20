@@ -35,17 +35,20 @@ const SONNAE = styled.img`
 
 const Title = styled.p`
   width: 100%;
+  margin: 0;
   font-family: NeutralFace;
   font-weight: bold;
-  font-size: 2.5vw;
-  color: #0a0a0a;
-  margin: 0;
+  font-size: max(2.5vw, 1.75rem);
   letter-spacing: 0.25rem;
+
+  color: #0a0a0a;
+  text-shadow: -1px -1px 0 #fafafa, 1px -1px 0 #fafafa, -1px 1px 0 #fafafa,
+    1px 1px 0 #fafafa;
 `;
 
 const SubText = styled.p`
   font-family: AGaramondPro;
-  font-size: 1vw;
+  font-size: max(1vw, 0.8rem);
   text-align: right;
   color: #0a0a0a;
   margin: 0;
@@ -53,9 +56,11 @@ const SubText = styled.p`
 
 const TitleContainer = styled.div`
   position: absolute;
-  top: calc(50vh + 18vw);
+  bottom: 8vh;
   right: 2.5vw;
-  /* transform: translate(140%, 500%); */
+  @media (min-height: 100vw) {
+    bottom: calc(20vh + (20vh - 10vw));
+  }
 `;
 
 const Home = () => {

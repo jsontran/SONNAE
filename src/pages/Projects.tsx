@@ -17,6 +17,7 @@ const ProjCards = styled.div`
   width: min(70%, 86rem);
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-top: min(14vw, 15rem);
   margin-bottom: min(14vw, 15rem);
   cursor: pointer;
@@ -35,6 +36,19 @@ const ProjImg = styled.img`
   );
   transform: scale(1.01);
   transition: 0.25s all ease;
+`;
+
+const ProjTitle = styled.div`
+  color: white;
+  font-family: NeutralFace;
+  font-weight: bold;
+  font-size: 1.5rem;
+  z-index: 1;
+  margin: 14rem 1rem 0.5rem;
+
+  text-shadow: -1px -1px 0 #1e1d1d, 1px -1px 0 #1e1d1d, -1px 1px 0 #1e1d1d,
+    1px 1px 0 #1e1d1d;
+  letter-spacing: 2px;
 `;
 
 const ProjCard = styled.div`
@@ -64,45 +78,68 @@ const ProjCard = styled.div`
       transform: scale(1.1) translateY(-1rem);
     }
   }
+
+  @media (min-height: 100vw), (max-width: 768px) {
+    margin: 0.5rem 0;
+  }
 `;
 
 const VProjCard = styled(ProjCard)`
   width: calc(35% - 1rem);
-  height: 20rem;
   &:hover {
     transform: scale(1.05);
+  }
+  @media (min-height: 100vw), (max-width: 768px) {
+    width: 100%;
+    height: fit-content;
+  }
+
+  ${ProjTitle} {
+    @media (min-height: 100vw), (max-width: 768px) {
+      margin: 8rem 1rem 0.5rem;
+    }
   }
 `;
 
 const HProjCard = styled(ProjCard)`
   width: calc(65% - 1rem);
-  height: 20rem;
+  height: fit-content;
   &:hover {
     transform: scaleX(1.027) scaleY(1.05);
+  }
+  @media (min-height: 100vw), (max-width: 768px) {
+    width: 100%;
+  }
+
+  ${ProjTitle} {
+    @media (min-height: 100vw), (max-width: 768px) {
+      margin: 8rem 1rem 0.5rem;
+    }
   }
 `;
 
 const LandProjCard = styled(ProjCard)`
   width: calc(100% - 1rem);
-  height: 20rem;
+  height: fit-content;
   &:hover {
     transform: scale(1.05);
+  }
+  @media (min-height: 100vw), (max-width: 768px) {
+    width: 100%;
   }
 `;
 
 const PairProjCard = styled.div<{ reverse: boolean }>`
   display: flex;
   flex-direction: ${(props) => (props.reverse ? "row-reverse" : "row")};
+
+  @media (min-height: 100vw), (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
-const ProjTitle = styled.div`
-  color: white;
-  font-family: NeutralFace;
-  font-weight: bold;
-  font-size: 1.5rem;
-  z-index: 1;
-  margin: 14rem 1rem 0.5rem;
-`;
 const ProjDesc = styled.div`
   height: fit-content;
   font-family: Archia;
@@ -110,6 +147,9 @@ const ProjDesc = styled.div`
   z-index: 1;
   margin: 0 1rem;
   color: white;
+  @media (min-height: 100vw), (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Title = styled.div`
@@ -272,7 +312,10 @@ const Projects = () => {
             with JavaScript and Sass.`,
           ]}
           img={["./assets/covers/tictactoe.png", "./assets/covers/MERN.jpg"]}
-          link={["https://github.com/jsontran/tictactoe-minimax", "https://github.com/jsontran/MERN-Void"]}
+          link={[
+            "https://github.com/jsontran/tictactoe-minimax",
+            "https://github.com/jsontran/MERN-Void",
+          ]}
         />
         <ProjCardsLayer
           type="PAIR"
@@ -286,7 +329,10 @@ const Projects = () => {
             pathfinding and urbanism diagnosis. `,
           ]}
           img={["./assets/covers/Taxi.jpeg", "./assets/covers/london.jpeg"]}
-          link={["https://github.com/yousamasham/CabTap", "https://github.com/jsontran/London-Transit-App"]}
+          link={[
+            "https://github.com/yousamasham/CabTap",
+            "https://github.com/jsontran/London-Transit-App",
+          ]}
         />
         <ProjCardsLayer
           type="LAND"

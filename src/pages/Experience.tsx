@@ -11,10 +11,6 @@ const ExpContainer = styled.div`
   padding: 2rem 0 0 0;
 `;
 
-const Background = styled.img`
-  
-`
-
 const ExpSection = styled.div`
   height: max(100%, fit-content);
   display: flex;
@@ -74,6 +70,11 @@ const ExpTitle = styled.div`
   margin: -1.5rem -5rem 0.5rem -1.5rem;
   background-color: #fafafa;
   color: #1e1d1d;
+
+  @media (min-height: 100vw) and (max-width: 768px), (max-width: 768px) {
+    font-size: clamp(1.25rem, 5vw, 5rem);
+    margin: -1rem -5rem 0.5rem -1.5rem;
+  }
 `;
 
 const ExpSubtitle = styled.div`
@@ -90,11 +91,26 @@ const ExpDesc = styled.div`
   font-family: Archia;
   font-size: 1rem;
   white-space: normal;
+
+  @media (min-height: 100vw) and (max-width: 768px), (max-width: 768px) {
+    font-size: clamp(0.8rem, 3.5vw, 1rem);
+  }
 `;
 
 const TimelineContainer = styled.div`
   width: min(100%, 72rem);
+  max-width: 100vw;
   display: flex;
+  box-sizing: border-box;
+  padding: 0 1rem 0 2.5rem;
+
+  @media (min-height: 100vw) and (max-width: 768px), (max-width: 768px) {
+    width: 100vw;
+    max-width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 const Title = styled.div`
@@ -109,6 +125,14 @@ const Title = styled.div`
   color: #fafafa;
   text-shadow: -1px -1px 0 #1e1d1d, 1px -1px 0 #1e1d1d, -1px 1px 0 #1e1d1d,
     1px 1px 0 #1e1d1d;
+
+  @media (min-height: 100vw) and (max-width: 768px), (max-width: 768px) {
+    width: fit-content;
+    margin: 0 0 1rem 0;
+    writing-mode: horizontal-tb;
+    letter-spacing: 1rem;
+    font-size: clamp(1.75rem, 5vw, 5rem);
+  }
 `;
 
 const ExperienceCardContainer = styled(Timeline)`
@@ -116,7 +140,7 @@ const ExperienceCardContainer = styled(Timeline)`
     margin-left: -1.7rem;
   }
   ${ExpCard} {
-    margin: -1.25rem 0rem 4rem 5rem;
+    margin: -1.25rem 0rem clamp(2rem, 4vw, 4rem) clamp(2rem, 5vw, 5rem);
   }
 `;
 

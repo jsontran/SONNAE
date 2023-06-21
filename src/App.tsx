@@ -14,9 +14,9 @@ const App = () => {
       <NavBar navState={navState} setNavState={setNavState} />
       <Home />
       <About />
-      {/* <Experience />
-      <Projects />
-      <Contact /> */}
+      <Experience />
+      {/* <Projects /> */}
+      <Contact />
     </>
   );
 };

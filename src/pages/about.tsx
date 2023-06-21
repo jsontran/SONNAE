@@ -15,7 +15,6 @@ const AboutContainer = styled.div`
 
 const CardContainer = styled.div`
   width: min(67vw, 73rem);
-  /* height: calc(min(67vw, 73rem) * 0.4); */
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -10,7 +10,7 @@ const ProjectsContainer = styled.div`
   align-items: center;
   background-color: #fafafa;
   margin-top: 8rem;
-  padding-top: 2rem;
+  padding: 2rem 0;
   overflow: hidden;
 `;
 

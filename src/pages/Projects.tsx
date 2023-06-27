@@ -2,6 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 
 const ProjectsContainer = styled.div`
+  position: relative;
   width: 100vw;
   height: fit-content;
   display: flex;
@@ -10,6 +11,7 @@ const ProjectsContainer = styled.div`
   background-color: #fafafa;
   margin-top: 8rem;
   padding-top: 2rem;
+  overflow: hidden;
 `;
 
 const ProjCards = styled.div`

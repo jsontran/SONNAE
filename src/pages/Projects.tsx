@@ -1,6 +1,5 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 
 const ProjectsContainer = styled.div`
   width: 100vw;
@@ -220,13 +219,13 @@ const TitleLayers = ({ index }: { index: number }) => {
   );
 };
 
-type CardContent = {
+type CardContentProps = {
   title: string | string[];
   desc: string | string[];
   img: string | string[];
 };
 
-const CardContent = ({ title, desc, img }: CardContent) => {
+const CardContent = ({ title, desc, img }: CardContentProps) => {
   const src = Array.isArray(img) ? img[0] : img;
   return (
     <>
@@ -237,7 +236,7 @@ const CardContent = ({ title, desc, img }: CardContent) => {
   );
 };
 
-type ProjCardProps = CardContent & {
+type ProjCardProps = CardContentProps & {
   type: string;
   reverse?: boolean;
   link: string | string[];
@@ -337,7 +336,7 @@ const Projects = () => {
         <ProjCardsLayer
           type="LAND"
           title="KIRBY'S DREAMLAND 1992"
-          desc={`Recreated the first level and boss battle from \"Kirby Dream Land\" using 
+          desc={`Recreated the first level and boss battle from "Kirby Dream Land" using 
           Visual Basic.NET. Employed Object-Oriented Programming and utilized integrated toolbox, 
           and event-handlers to create engaging in-game interactions and user controls, resulting 
           in a highly responsive gameplay experience. The project demonstrates proficiency 

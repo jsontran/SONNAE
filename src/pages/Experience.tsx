@@ -7,8 +7,17 @@ const ExpContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  background-color: #fafafa;
   padding: 2rem 0 0 0;
+`;
+
+const Star = styled.img`
+  object-fit: cover;
+  position: absolute;
+  width: 45rem;
+  height: 45rem;
+  bottom: 15vh;
+  left: 60vw;
+  z-index: 0;
 `;
 
 const ExpSection = styled.div`
@@ -34,8 +43,8 @@ const ExpCard = styled.div`
   margin: -1.25rem 0rem 4rem 5rem;
   border-radius: 0.5rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   transition: all 0.25s ease;
   padding: 0 2rem 1rem 2rem;
 `;
@@ -103,6 +112,7 @@ const TimelineContainer = styled.div`
   display: flex;
   box-sizing: border-box;
   padding: 0 1rem 0 2.5rem;
+  z-index: 1;
 
   @media (min-height: 100vw) and (max-width: 768px), (max-width: 768px) {
     width: 100vw;
@@ -212,6 +222,7 @@ const Experience = () => {
 
   return (
     <ExpContainer id="Experience">
+      <Star src="./assets/star.png" />
       <TimelineContainer>
         <Title>Experience</Title>
         <ExpSection>
@@ -219,25 +230,25 @@ const Experience = () => {
             title="Evertz"
             subtitle="Software Engineer | May '23 - Present"
             desc={evertzDesc}
-            img={"./assets/evertz.png"}
+            img={"./assets/logos/evertz.png"}
           />
           <ExperienceCard
             title="Pattern"
             subtitle="Software Engineer | May '22 - Aug '22"
             desc={patternDesc}
-            img={"./assets/pattern.jpeg"}
+            img={"./assets/logos/pattern.jpeg"}
           />
           <ExperienceCard
             title="McSCert"
             subtitle="Research Assistant | May '21 - Aug '21"
             desc={mcmasterDesc}
-            img={"./assets/mcscert.png"}
+            img={"./assets/logos/mcscert.png"}
           />
           <ExperienceCard
             title="Google DSC"
             subtitle="Vice President of Marketing | Sept '20 - Apr '20"
             desc={dscDesc}
-            img={"./assets/dsc.png"}
+            img={"./assets/logos/dsc.png"}
           />
         </ExpSection>
       </TimelineContainer>

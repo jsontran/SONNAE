@@ -47,8 +47,11 @@ const CardContainer = styled.div`
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (min-height: 100vw) and (max-width: 768px), (max-width: 768px) {
   justify-content: center;
   align-items: center;
+  }
 `;
 
 const PictureCard = styled.img`
@@ -91,7 +94,7 @@ const AboutText = styled.div`
 `;
 
 const ContactContainer = styled.div`
-  width: fit-content;
+width: fit-content;
   padding: 0.5rem 0 0.25rem 1rem;
   margin: 0 0 0 1rem;
 

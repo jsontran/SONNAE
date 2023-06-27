@@ -226,7 +226,7 @@ const About = () => {
           <ContactContainer>
             <Email
               as={EmailIcon}
-              onClick={() => handleLink("jjsontran@gmail.com")}
+              onClick={() => handleLink("mailto:jjsontran@gmail.com")}
             />
             <Linkedin
               as={LinkedInIcon}

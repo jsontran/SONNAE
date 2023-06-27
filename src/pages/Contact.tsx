@@ -44,7 +44,7 @@ const TechStack = styled.div`
 `;
 
 const links = [
-  "jjsontran@gmail.com",
+  "mailto:jjsontran@gmail.com",
   "https://www.linkedin.com/jsontran",
   "https://www.github.com/jsontran",
 ];

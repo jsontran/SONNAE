@@ -27,6 +27,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: SkModernist;
     src: url("./fonts/SkModernist.otf") format("opentype");
   }
+  @font-face {
+    font-family: Archia;
+    src: url("./fonts/Archia.ttf") format("truetype");
+  }
 
 
   html ,body {

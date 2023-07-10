@@ -69,7 +69,7 @@ const ProjCard = styled.div`
     rgba(0, 0, 0, 1) 70%
   );
   border: 1px solid rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   transition: 0.25s all ease;
   &:hover {

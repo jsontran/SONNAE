@@ -13,36 +13,12 @@ const HomeContainer = styled.div`
 `;
 
 const SONNAE = styled.img`
-  max-width: 110%;
+  max-width: 110vw;
   position: absolute;
   top: 50%;
   left: 50%;
 
   transform: translate(-54.5%, -50%);
-  animation: floater 5s infinite;
-
-  @-webkit-keyframes floater {
-    0% {
-      transform: scale(0.9) translate(-56.5%, -50%);
-      transform: translate(-54.5%, -50%);
-      transition: ease 0.5s;
-    }
-    50% {
-      transform: scale(1.02) translate(-53.5%, -49%);
-      transition: ease 0.5s;
-    }
-  }
-  @keyframes floater {
-    0% {
-      transform: scale(0.9) translate(-56.5%, -50%);
-      transform: translate(-54.5%, -50%);
-      transition: ease 0.5s;
-    }
-    50% {
-      transform: scale(1.02) translate(-53.5%, -49%);
-      transition: ease 0.5s;
-    }
-  }
 `;
 
 const Title = styled.p`

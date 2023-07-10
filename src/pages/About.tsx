@@ -6,11 +6,13 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const AboutContainer = styled.div`
   width: 100vw;
-  height: fit-content;
   display: flex;
   flex-direction: column;
   background-color: #fafafa;
-  padding-top: 12vh;
+  padding: 12vh 0;
+  @media (min-height: 100vw) and (max-width: 768px), (max-width: 768px) {
+    height: 40rem;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -33,8 +35,7 @@ const CardContainer = styled.div`
     width: 95vw;
   }
 
-
-  @media (max-width: 600px){
+  @media (max-width: 600px) {
     width: 90vw;
   }
 
@@ -49,8 +50,8 @@ const InfoContainer = styled.div`
   flex-direction: column;
 
   @media (min-height: 100vw) and (max-width: 768px), (max-width: 768px) {
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
@@ -94,7 +95,7 @@ const AboutText = styled.div`
 `;
 
 const ContactContainer = styled.div`
-width: fit-content;
+  width: fit-content;
   padding: 0.5rem 0 0.25rem 1rem;
   margin: 0 0 0 1rem;
 

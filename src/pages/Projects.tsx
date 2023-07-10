@@ -72,6 +72,7 @@ const ProjCard = styled.div`
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
   transition: 0.25s all ease;
+  transform: scale(1);
   &:hover {
     box-shadow: 0px 5px 10px 0px #ffffff1f;
     z-index: 100;

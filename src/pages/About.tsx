@@ -164,7 +164,7 @@ const NameSlider = styled.div`
     display: inline-block;
     margin: 0;
     color: #1e1d1d;
-    transform: scale(0.95, 2);
+    transform: scale(0.95, 3);
   }
 
   @keyframes slide {

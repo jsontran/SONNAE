@@ -8,14 +8,13 @@ const ProjectsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fafafa;
   margin-top: 8rem;
   padding: 2rem 0;
   overflow: hidden;
 `;
 
 const ProjCards = styled.div`
-  width: min(70%, 86rem);
+  width: min(55%, 86rem);
   display: flex;
   flex-direction: column;
   align-items: center;

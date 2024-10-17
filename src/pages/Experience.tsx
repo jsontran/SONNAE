@@ -15,8 +15,8 @@ const Star = styled.img`
   position: absolute;
   width: 45rem;
   height: 45rem;
-  bottom: 15vh;
-  left: 60vw;
+  bottom: 70vh;
+  left: 10vw;
   z-index: 0;
 `;
 
@@ -222,7 +222,6 @@ const Experience = () => {
 
   return (
     <ExpContainer id="Experience">
-      <Star src="./assets/star.png" />
       <TimelineContainer>
         <Title>Experience</Title>
         <ExpSection>

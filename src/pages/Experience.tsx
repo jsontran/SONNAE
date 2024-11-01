@@ -10,16 +10,6 @@ const ExpContainer = styled.div`
   padding: 2rem 0 0 0;
 `;
 
-const Star = styled.img`
-  object-fit: cover;
-  position: absolute;
-  width: 45rem;
-  height: 45rem;
-  bottom: 15vh;
-  left: 60vw;
-  z-index: 0;
-`;
-
 const ExpSection = styled.div`
   height: max(100%, fit-content);
   display: flex;
@@ -188,9 +178,9 @@ const ExperienceCard = ({
 };
 
 const Experience = () => {
-  const evertzDesc = `A part of a project-driven unit to be challenged to design and 
-  develop software used in leading television broadcast and film production facilities 
-  internationally, including CBC, ABC, NBC, HBO, and the BBC.`;
+  const evertzDesc = `As part of a project-driven research unit, I am challenged to 
+  design and develop software utilized by leading television broadcast and film 
+  production facilities worldwide, including CBC, ABC, NBC, NBA, HBO, and the BBC.`;
 
   const patternDesc = [
     `Contributed within a full-stack web development environment
@@ -222,7 +212,6 @@ const Experience = () => {
 
   return (
     <ExpContainer id="Experience">
-      <Star src="./assets/star.png" />
       <TimelineContainer>
         <Title>Experience</Title>
         <ExpSection>

@@ -8,14 +8,13 @@ const ProjectsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fafafa;
   margin-top: 8rem;
   padding: 2rem 0;
   overflow: hidden;
 `;
 
 const ProjCards = styled.div`
-  width: min(70%, 86rem);
+  width: min(55%, 86rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,8 +31,8 @@ const ProjImg = styled.img`
   height: 100%;
   mask-image: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.85) 50%,
-    rgba(0, 0, 0, 0.15) 80%
+    rgba(255, 255, 255, 1) 50%,
+    rgba(0, 0, 0, 0) 100%
   );
   transform: scale(1.01);
   transition: 0.25s all ease;
@@ -302,6 +301,17 @@ const Projects = () => {
         ))}
       </Title>
       <ProjCards>
+        <ProjCardsLayer
+          type="LAND"
+          title="Alkalytics"
+          desc={`Data management tool using machine learning and AI for ocean alkalinity 
+            experiments to enhance CO2 absorption. Supports CSV migration, inter-parameter 
+            comparison, fast querying, and customizable data visualization through an 
+            intuitive web interface, with flexible architecture for expansion.`}
+          img="./assets/covers/Alkalytics.jpeg"
+          link="https://github.com/SumanyaG/Alkalytics"
+        />
+
         <ProjCardsLayer
           type="PAIR"
           title={["Tic Tac Toe Minimax", "MERN VOID"]}

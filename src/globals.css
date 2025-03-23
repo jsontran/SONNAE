@@ -122,6 +122,14 @@
   .tooltip:hover .tooltip-text,
   .nav-tooltip:hover .tooltip-text {
     @apply visible opacity-100;
+  }
+
+  /* Keep the correct transform for each tooltip type */
+  .tooltip:hover .tooltip-text {
+    transform: translateX(-50%);
+  }
+
+  .nav-tooltip:hover .tooltip-text {
     transform: translateY(-50%);
   }
 

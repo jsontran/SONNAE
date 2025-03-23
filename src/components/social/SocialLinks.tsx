@@ -44,7 +44,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ onLinkClick }) => {
   return (
     <div className="flex items-center justify-center p-2 rounded-xl bg-white/80 shadow-md border border-border-light w-fit">
       {socialLinks.map((link) => (
-        <div className="tooltip mr-4 last:mr-0" key={link.id}>
+        <div className="tooltip mr-4 last:mr-0 relative" key={link.id}>
           <button
             onClick={() => onLinkClick(link.href)}
             aria-label={link.label}

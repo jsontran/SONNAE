@@ -71,7 +71,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           className="w-full h-full object-cover transition-all duration-500 ease-out-expo group-hover:scale-105"
         />
         <div
-          className={`absolute ${styles.infoPosition} backdrop-blur-sm bg-white/10 border border-white/20 rounded-xl ${styles.padding} shadow-lg transition-all duration-300 group-hover:bg-white/15`}
+          className={`absolute ${styles.infoPosition} backdrop-blur-sm bg-black/70 border border-white/20 rounded-xl ${styles.padding} shadow-lg transition-all duration-300 group-hover:bg-white/15`}
         >
           <div className="flex flex-col gap-1.5">
             <h3
@@ -79,7 +79,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             >
               {title}
             </h3>
-            <p className="text-white/95 font-archia text-sm md:text-base">
+            <p className="text-white font-archia text-sm md:text-base">
               {description}
             </p>
           </div>

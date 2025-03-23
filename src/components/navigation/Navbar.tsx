@@ -87,22 +87,22 @@ const NavBar: React.FC<NavBarProps> = ({ navState, setNavState }) => {
   const toggleButtonClasses =
     "w-full h-0.5 bg-secondary transition-transform duration-300 ease-out-expo will-change-transform";
   const firstBarClasses = `${toggleButtonClasses} ${
-    navState ? "rotate-45 translate-y-[5px]" : ""
+    navState ? "rotate-45 translate-y-[0.1875rem] origin-center" : ""
   }`;
   const secondBarClasses = `${toggleButtonClasses} ${
-    navState ? "-rotate-45 -translate-y-[5px]" : ""
+    navState ? "-rotate-45 -translate-y-[0.1875rem] origin-center" : ""
   }`;
 
-  const navMenuClasses = `
-    flex flex-col justify-center items-center overflow-visible p-2 z-[998] 
+  const navMenuClasses =
+    `    flex flex-col justify-center items-center overflow-visible p-2 z-[998] 
     border border-border-light rounded-md bg-background shadow-sm 
     transition-all duration-300 ease-out-expo will-change-transform will-change-opacity 
     ${
       navState ? "mt-14 opacity-100" : "-mt-80 opacity-0 pointer-events-none"
     } gpu
   `
-    .trim()
-    .replace(/\s+/g, " ");
+      .trim()
+      .replace(/\s+/g, " ");
 
   return (
     <div className="fixed inline-flex flex-col left-4 top-6 w-14 min-h-14 h-fit overflow-visible z-50 sm:w-12 animate-fade-in">

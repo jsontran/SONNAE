@@ -2,16 +2,11 @@ import React from "react";
 
 export interface MarqueeTextProps {
   text: string;
-  fontSize?: string;
   color?: string;
 }
 
 // Component for animated marquee text
-const MarqueeText: React.FC<MarqueeTextProps> = ({
-  text = "DEVELOPER. DESIGNER. ENTREPRENEUR.",
-  fontSize = "16vh",
-  color = "text-primary",
-}) => {
+const MarqueeText: React.FC<MarqueeTextProps> = ({ text = "", color = "" }) => {
   // Styles for marquee text
   const marqueeTextStyle = {
     transform: "scale(0.95, 3)",
@@ -22,13 +17,13 @@ const MarqueeText: React.FC<MarqueeTextProps> = ({
     <div className="w-full -mt-16 overflow-visible">
       <div className="whitespace-nowrap animate-[marquee_30s_linear_infinite]">
         <p
-          className={`font-neutralface text-[${fontSize}] inline-block m-0 ${color}`}
+          className={`font-neutralface text-[16vh] inline-block m-0 ${color}`}
           style={marqueeTextStyle}
         >
           {text}
         </p>
         <p
-          className={`font-neutralface text-[${fontSize}] inline-block m-0 ${color}`}
+          className={`font-neutralface text-[16vh] inline-block m-0 ${color}`}
           style={marqueeTextStyle}
         >
           {text}

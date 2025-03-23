@@ -1,52 +1,61 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState, memo } from "react";
 
-const Overlay = styled.div<{ isVisible: boolean; isFadingOut: boolean }>`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #fafafa;
-  color: black;
-  display: ${({ isVisible }) => (isVisible ? "flex" : "none")};
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-family: NeutralFace;
-  z-index: 1000;
-  opacity: ${({ isFadingOut }) => (isFadingOut ? 0 : 1)};
-  transition: opacity 1s ease;
-`;
-
-const Message = styled.h2`
-  margin: 0;
-`;
-
-interface LoadingProps {
+interface ThreeJsLoadingProps {
   isLoading: boolean;
+  fadeOutDuration?: number;
+  message?: string;
 }
 
-const Loading: React.FC<LoadingProps> = ({ isLoading }) => {
-  const [isVisible, setIsVisible] = useState(isLoading);
-  const [isFadingOut, setIsFadingOut] = useState(false);
+/**
+ * A specialized loading screen for 3D content with fade in/out transitions
+ */
+const ThreeJsLoading: React.FC<ThreeJsLoadingProps> = ({
+  isLoading,
+  fadeOutDuration = 1000,
+  message = "Loading...",
+}) => {
+  const [isVisible, setIsVisible] = useState<boolean>(isLoading);
+  const [isFadingOut, setIsFadingOut] = useState<boolean>(false);
 
   useEffect(() => {
+    let fadeTimer: NodeJS.Timeout | undefined;
+
     if (isLoading) {
+      // When loading starts, immediately show and reset fade state
       setIsFadingOut(false);
       setIsVisible(true);
     } else {
+      // When loading completes, start fade out transition
       setIsFadingOut(true);
-      const fadeTimer = setTimeout(() => setIsVisible(false), 1000); 
-      return () => clearTimeout(fadeTimer);
+
+      // After fade completes, hide the component entirely
+      fadeTimer = setTimeout(() => setIsVisible(false), fadeOutDuration);
     }
-  }, [isLoading]);
+
+    // Cleanup timer to prevent memory leaks
+    return () => {
+      if (fadeTimer) clearTimeout(fadeTimer);
+    };
+  }, [isLoading, fadeOutDuration]);
+
+  // Compose class name for transitions
+  const containerClasses = `
+    fixed top-0 left-0 w-full h-screen 
+    bg-background text-primary 
+    flex justify-center items-center 
+    text-2xl font-neutralface z-[1000] 
+    transition-opacity duration-1000 ease-in-out
+    ${isVisible ? "flex" : "hidden"}
+    ${isFadingOut ? "opacity-0" : "opacity-100"}
+  `
+    .trim()
+    .replace(/\s+/g, " ");
 
   return (
-    <Overlay isVisible={isVisible} isFadingOut={isFadingOut}>
-      <Message>Loading...</Message>
-    </Overlay>
+    <div className={containerClasses}>
+      <h2 className="m-0">{message}</h2>
+    </div>
   );
 };
 
-export default Loading;
+export default memo(ThreeJsLoading);

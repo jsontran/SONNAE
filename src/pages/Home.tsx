@@ -1,39 +1,46 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useEffect, useRef, memo } from "react";
+import { createMouseFollow } from "../utils/animations";
+import { ScrollIndicator } from "../components";
 
-const HomeContainer = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+interface HomeProps {}
 
-  display: flex;
-  flex-direction: column;
+const Home: React.FC<HomeProps> = () => {
+  const nameRef = useRef<HTMLParagraphElement>(null);
 
-  background-color: #fafafa;
-`;
+  // Apply mouse follow effect on component mount
+  useEffect(() => {
+    if (nameRef.current) {
+      // Subtle mouse-follow effect for the name
+      createMouseFollow("#name-title", 0.02);
+    }
+  }, []);
 
-const Title = styled.p`
-  position: absolute;
-  top: 15%;
-  left: 0%;
-  margin: 0;
-  font-family: NeutralFace;
-  font-weight: bold;
-  font-size: max(24vw, 1.75rem);
-  letter-spacing: 0.25rem;
-  text-align: center;
+  // Define styles for better organization
+  const nameTitleStyle = {
+    textShadow:
+      "-1px -1px 0 #fafafa, 1px -1px 0 #fafafa, -1px 1px 0 #fafafa, 1px 1px 0 #fafafa",
+  };
 
-  color: #000000;
-  text-shadow: -1px -1px 0 #fafafa, 1px -1px 0 #fafafa, -1px 1px 0 #fafafa,
-    1px 1px 0 #fafafa;
-`;
-
-const Home = () => {
   return (
-    <HomeContainer id="Home">
-      <Title>Jason Tran</Title>
-    </HomeContainer>
+    <div
+      id="Home"
+      className="relative w-screen h-screen flex flex-col bg-background"
+    >
+      <p
+        id="name-title"
+        ref={nameRef}
+        className="absolute leading-none top-[15%] left-0 m-0 font-neutralface font-bold text-[max(24vw,1.75rem)] tracking-tight text-center text-primary w-full animate-fade-in"
+        style={nameTitleStyle}
+      >
+        Jason Tran
+      </p>
+
+      {/* Scroll indicator with animation */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <ScrollIndicator />
+      </div>
+    </div>
   );
 };
 
-export default Home;
+export default memo(Home);

@@ -1,66 +1,56 @@
-import React from "react";
-import styled from "styled-components";
+import React, { memo } from "react";
+import ContactButton from "../components/ui/buttons/ContactButton";
 
-const ContactContainer = styled.div`
-  background-color: #fafafa;
-  width: 100vw;
-  min-width: 100vw;
-  box-sizing: border-box;
-  padding: 0 min(3vw, 4rem) 0 min(3vw, 4rem);
-  height: clamp(4rem, 10vw, 8rem);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+// Type definitions for better type safety and documentation
+interface ContactLink {
+  url: string;
+  label: string;
+  tooltip: string;
+}
 
-const PillsContainer = styled.div`
-  margin-right: auto;
-  margin-left: auto;
-`;
-
-const Pills = styled.a`
-  font-size: clamp(0.75rem, 2vw, 1.15rem);
-  font-family: NeutralFace;
-  margin: 0.25rem;
-  padding: 0.3rem 0.5rem 0.15rem 0.5rem;
-  border-radius: 5rem;
-  text-align: center;
-  border: 1px solid #1e1d1d;
-  text-decoration: none;
-  color: #1e1d1d;
-`;
-
-const Copyright = styled.div`
-  font-size: clamp(0.5rem, 2vw, 1rem);
-  font-family: Archia;
-  margin-right: min(8vw, 6rem);
-`;
-
-const TechStack = styled.div`
-  text-align: right;
-  font-size: clamp(0.5em, 2vw, 1rem);
-  font-family: Archia;
-  margin-left: min(4vw, 2rem);
-`;
-
-const links = [
-  "mailto:jjsontran@gmail.com",
-  "https://www.linkedin.com/jsontran",
-  "https://www.github.com/jsontran",
+// Extracted contact data for better maintainability
+const contactLinks: ContactLink[] = [
+  {
+    url: "mailto:jjsontran@gmail.com",
+    label: "EMAIL",
+    tooltip: "Send an email",
+  },
+  {
+    url: "https://www.linkedin.com/in/jsontran",
+    label: "LINKEDIN",
+    tooltip: "Visit LinkedIn profile",
+  },
+  {
+    url: "https://www.github.com/jsontran",
+    label: "GITHUB",
+    tooltip: "Check out GitHub repositories",
+  },
 ];
-const labels = ["EMAIL", "LINKEDIN", "GITHUB"];
-const Contact = () => {
+
+// Main component
+const Contact: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <ContactContainer id="Contact">
-      <Copyright>© 2023 Jason Tran</Copyright>
-      <PillsContainer>
-        {links.map((link, i) => (
-          <Pills href={link}>{labels[i]}</Pills>
+    <footer
+      id="Contact"
+      className="w-full h-fit min-h-20 bg-background flex justify-between items-center px-8 py-6 border-t border-border-light"
+    >
+      <div className="text-sm text-text-primary font-archia animate-fade-in">
+        © {currentYear} Jason Tran
+      </div>
+
+      <div className="flex space-x-3 justify-center">
+        {contactLinks.map((link, index) => (
+          <ContactButton key={index} {...link} />
         ))}
-      </PillsContainer>
-      <TechStack>Made with REACT, TS, SC</TechStack>
-    </ContactContainer>
+      </div>
+
+      <div className="text-sm text-text-primary font-archia animate-fade-in">
+        Made with React, TypeScript, TailwindCSS
+      </div>
+    </footer>
   );
 };
 
-export default Contact;
+export default memo(Contact);

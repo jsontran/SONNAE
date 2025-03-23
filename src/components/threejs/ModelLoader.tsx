@@ -1,20 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+// Clear interfaces for better type safety
+interface ModelDefinition {
+  path: string;
+  key: string;
+  position: [number, number, number];
+  scale: [number, number, number];
+}
+
+interface ModelCollection {
+  [key: string]: THREE.Object3D | null;
+}
+
+interface MixerCollection {
+  [key: string]: THREE.AnimationMixer;
+}
+
 interface ModelLoaderProps {
-  modelsRef: React.MutableRefObject<{ [key: string]: THREE.Object3D | null }>;
-  mixersRef: React.MutableRefObject<{ [key: string]: THREE.AnimationMixer }>;
+  modelsRef: React.MutableRefObject<ModelCollection>;
+  mixersRef: React.MutableRefObject<MixerCollection>;
   setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
   scene: THREE.Scene;
 }
 
-const modelsToLoad: {
-  path: string;
-  key: string;
-  position: number[];
-  scale: number[];
-}[] = [
+// Models configuration array for easy modification and extension
+const modelsConfig: ModelDefinition[] = [
   {
     path: "./assets/3D/dancer.glb",
     key: "dancer",
@@ -24,7 +36,7 @@ const modelsToLoad: {
   {
     path: "./assets/3D/kirby.glb",
     key: "kirby",
-    position: [3, -11.6, 0],
+    position: [3, -10, 0],
     scale: [1.1, 1.1, 1.1],
   },
   {
@@ -41,27 +53,51 @@ const modelsToLoad: {
   },
 ];
 
+/**
+ * Component responsible for loading 3D models into the scene
+ * Manages loading states and animations for models
+ */
 const ModelLoader: React.FC<ModelLoaderProps> = ({
   modelsRef,
   mixersRef,
   setIsLoading,
   scene,
 }) => {
-  const loader = new GLTFLoader();
-
   useEffect(() => {
     let loadedModelsCount = 0;
-    const totalModelsCount = modelsToLoad.length;
+    const totalModelsCount = modelsConfig.length;
+    const loader = new GLTFLoader();
 
-    modelsToLoad.forEach(({ path, key, position, scale }) => {
+    // Load progress handler to track model loading
+    const onProgress = () => {
+      loadedModelsCount++;
+      if (loadedModelsCount === totalModelsCount) {
+        setIsLoading(false);
+      }
+    };
+
+    // Error handler for model loading failures
+    const onError = (error: unknown) => {
+      console.error("Model loading error:", error);
+      // Still increment count to prevent hanging on error
+      onProgress();
+    };
+
+    // Load each model defined in the config
+    modelsConfig.forEach(({ path, key, position, scale }) => {
       loader.load(
         path,
         (gltf) => {
           const model = gltf.scene;
+
+          // Position and scale the model
           model.position.set(position[0], position[1], position[2]);
           model.scale.set(scale[0], scale[1], scale[2]);
+
+          // Store the model in the reference collection
           modelsRef.current[key] = model;
 
+          // Setup animations if present
           if (gltf.animations.length) {
             const mixer = new THREE.AnimationMixer(model);
             const action = mixer.clipAction(gltf.animations[0]);
@@ -69,19 +105,18 @@ const ModelLoader: React.FC<ModelLoaderProps> = ({
             mixersRef.current[key] = mixer;
           }
 
-          loadedModelsCount++;
-
-          if (loadedModelsCount === totalModelsCount) {
-            setIsLoading(false);
-          }
+          onProgress();
         },
         undefined,
-        (error) => console.error("Model loading error:", error)
+        onError
       );
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    // No cleanup needed as models are maintained for the app's lifetime
   }, [modelsRef, mixersRef, setIsLoading]);
+
+  // Render nothing - this component only handles loading
   return null;
 };
 
-export default ModelLoader;
+export default memo(ModelLoader);

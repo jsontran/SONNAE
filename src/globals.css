@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: NeutralFace;
+  src: url("../public/fonts/NeutralFace.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: NeutralFace;
+  src: url("../public/fonts/NeutralFace-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: AGaramondPro;
+  src: url("../public/fonts/AGaramondPro.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: AGaramondPro;
+  src: url("../public/fonts/AGaramondPro-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: SkModernist;
+  src: url("../public/fonts/SkModernist.otf") format("opentype");
+  font-display: swap;
+}
+
+@layer components {
+  .vertical-text {
+    writing-mode: horizontal-tb;
+    font-size: clamp(1.75rem, 5vw, 5rem);
+  }
+
+  @media (min-width: 768px) {
+    .vertical-text {
+      writing-mode: vertical-rl;
+      transform-origin: top left;
+      font-size: 10vh;
+    }
+  }
+
+  .card {
+    @apply rounded-xl border border-border-light bg-white/90 shadow-md backdrop-blur;
+    transform: translateZ(0);
+  }
+
+  .card-gradient {
+    @apply rounded-xl border border-white/80 backdrop-blur;
+    background-gradient: linear-gradient(180deg, transparent 30%, black 70%);
+    transform: translateZ(0);
+  }
+
+  .transition-default {
+    @apply transition-all duration-250 ease-out-sine;
+  }
+
+  .hover-grow {
+    @apply transition-all duration-300 ease-out-expo;
+    transform: scale(1);
+    will-change: transform;
+  }
+
+  .hover-grow:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 ease-out-expo;
+    transform: translateY(0);
+    will-change: transform;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+
+  .tooltip {
+    @apply relative inline-block;
+  }
+
+  /* Standard tooltip */
+  .tooltip .tooltip-text {
+    @apply invisible absolute z-50 w-auto p-2 bg-primary text-background text-xs rounded-md 
+           opacity-0 transition-opacity duration-200 whitespace-nowrap;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* Navbar specific tooltips - position to the right */
+  .nav-tooltip .tooltip-text {
+    @apply invisible fixed z-[999] p-2 bg-primary text-background rounded-md
+           opacity-0 transition-opacity duration-200;
+    left: auto;
+    right: auto;
+    top: 50%;
+    left: 100%;
+    margin-left: 20px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 0.75rem;
+    transition: opacity 0.2s ease-in-out;
+    /* Allow width to match content */
+    width: auto;
+    min-width: min-content;
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1.2;
+    padding: 5px 10px;
+  }
+
+  .tooltip:hover .tooltip-text,
+  .nav-tooltip:hover .tooltip-text {
+    @apply visible opacity-100;
+    transform: translateY(-50%);
+  }
+
+  /* Standard tooltip arrow */
+  .tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1e1d1d transparent transparent transparent;
+  }
+
+  /* Navbar tooltip arrow - points left */
+  .nav-tooltip .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #1e1d1d transparent transparent;
+  }
+}
+
+@keyframes flicker {
+  0% {
+    color: rgb(250, 250, 250);
+  }
+  2% {
+    color: #1e1d1d;
+  }
+  10% {
+    color: #1e1d1d;
+  }
+  12% {
+    color: rgb(250, 250, 250);
+  }
+}
+
+@layer utilities {
+  .mask-image-gradient {
+    mask-image: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 1) 50%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  .shadow-text {
+    text-shadow: -1px -1px 0 #1e1d1d, 1px -1px 0 #1e1d1d, -1px 1px 0 #1e1d1d,
+      1px 1px 0 #1e1d1d;
+  }
+  .glassmorphism {
+    @apply bg-white/80 backdrop-blur border border-border-light rounded-xl;
+    transform: translateZ(0);
+  }
+
+  .glass-card {
+    @apply relative overflow-hidden;
+  }
+
+  .glass-card::before {
+    @apply absolute inset-0 bg-white/10 border border-white/20 rounded-2xl transition-all duration-300 z-10;
+    content: "";
+  }
+
+  .glass-card:hover::before {
+    @apply bg-white/20 border-white/30 shadow-lg;
+  }
+
+  .hover-shadow {
+    @apply transition-all duration-300 ease-out-expo;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    will-change: box-shadow, transform;
+  }
+
+  .hover-shadow:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  .text-gradient {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(135deg, #1e1d1d 0%, #505050 100%);
+  }
+
+  .hover-magnify {
+    @apply overflow-hidden;
+  }
+
+  .hover-magnify img {
+    @apply transition-transform duration-700 ease-out-expo;
+    will-change: transform;
+  }
+
+  .hover-magnify:hover img {
+    transform: scale(1.07);
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  background-color: rgb(250, 250, 250);
+  touch-action: manipulation;
+  @media (prefers-reduced-motion: reduce) {
+    scroll-behavior: auto;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(250, 250, 250, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(30, 29, 29, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(30, 29, 29, 0.5);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

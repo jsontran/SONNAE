@@ -1,25 +1,49 @@
 import * as THREE from "three";
 
-const AnimationHandler = (
-  models: { [key: string]: THREE.Object3D | null },
-  mouse: { x: number; y: number },
-  scrollY: number
-) => {
+// Define clear interfaces for the function parameters
+interface ModelCollection {
+  [key: string]: THREE.Object3D | null;
+}
+
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+/**
+ * Handles the animation of 3D models based on mouse position and scroll
+ * @param models Collection of 3D models to animate
+ * @param mousePosition Current mouse position coordinates
+ * @param scrollPosition Current page scroll position
+ */
+const animationHandler = (
+  models: ModelCollection,
+  mousePosition: MousePosition,
+  scrollPosition: number
+): void => {
+  const time = performance.now() * 0.001;
+
+  // Kirby model animation - floating effect
   if (models.kirby) {
-    const time = performance.now() * 0.001;
-    models.kirby.position.y = -11.6 + Math.sin(time * 2) * 0.1;
+    models.kirby.position.y = -10 + Math.sin(time * 2) * 0.1;
   }
+
+  // Mimi model animation - gentle rotation
   if (models.mimi) {
-    const time = performance.now() * 0.001;
     models.mimi.rotation.y = Math.sin(time) * 0.05;
   }
+
+  // Computer model animation - continuous rotation
   if (models.computer) {
     models.computer.rotation.y += 0.001;
   }
+
+  // Dancer model animation - follows mouse movement
   if (models.dancer) {
-    models.dancer.rotation.x = (mouse.y - scrollY * 0.0033) * -0.15;
-    models.dancer.rotation.y = mouse.x * 0.5 - 0.13;
+    models.dancer.rotation.x =
+      (mousePosition.y - scrollPosition * 0.0033) * -0.15;
+    models.dancer.rotation.y = mousePosition.x * 0.5 - 0.13;
   }
 };
 
-export default AnimationHandler;
+export default animationHandler;
